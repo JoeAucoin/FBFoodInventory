@@ -1,0 +1,102 @@
+﻿/****** Object:  StoredProcedure [dbo].[GIBS_FBProducts_List]    Script Date: 09/21/2013 05:30:05 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER procedure [dbo].[GIBS_FBProducts_List]
+
+	@ModuleId int
+
+as
+BEGIN 
+
+	SELECT     GIBS_FBProducts.ProductID, GIBS_FBProducts.ProductName, 
+	GIBS_FBProducts.CasePrice, GIBS_FBProducts.CaseCount, GIBS_FBProducts.CaseWeight,
+	GIBS_FBProducts.ProductCategoryID, GIBS_FBProductCategory.ProductCategory,GIBS_FBProducts.ProductCategoryID,
+	GIBS_FBProducts.ModuleID, GIBS_FBProducts.CreatedOnDate, 
+	GIBS_FBProducts.CreatedByUserID, GIBS_FBProducts.LastModifiedByUserID, 
+	GIBS_FBProducts.LastModifiedOnDate, GIBS_FBProducts.PortalID, 
+	Users.FirstName + ' ' + Users.LastName AS 'CreatedByUserName',
+	LastMod.FirstName + ' ' + LastMod.LastName AS 'LastModifiedByUserName'
+                      
+FROM         GIBS_FBProducts 
+			INNER JOIN
+            GIBS_FBProductCategory ON GIBS_FBProducts.ProductCategoryID = GIBS_FBProductCategory.ProductCategoryID
+              
+              LEFT OUTER JOIN
+             Users AS LastMod ON GIBS_FBProducts.LastModifiedByUserID = LastMod.UserID
+                      
+              LEFT OUTER JOIN
+             Users AS Users ON GIBS_FBProducts.CreatedByUserID = Users.UserID
+WHERE     (GIBS_FBProducts.ModuleID = @ModuleId)
+ORDER BY GIBS_FBProductCategory.ProductCategory, GIBS_FBProducts.ProductName
+
+END
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategory_List]    Script Date: 09/21/2013 06:52:55 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER procedure [dbo].[GIBS_FBProductCategory_List]
+
+	@ModuleId int
+
+as
+
+SELECT     
+ProductCategoryID, ProductCategory, ModuleID, GIBS_FBProductCategory.CreatedOnDate, 
+GIBS_FBProductCategory.CreatedByUserID, GIBS_FBProductCategory.LastModifiedByUserID, 
+GIBS_FBProductCategory.LastModifiedOnDate, 
+PortalID, 
+'CreatedByUserName' = Users.FirstName + ' ' + Users.LastName,
+LastMod.FirstName + ' ' + LastMod.LastName AS 'LastModifiedByUserName'
+
+from dbo.GIBS_FBProductCategory
+left outer join Users on GIBS_FBProductCategory.CreatedByUserID = Users.UserId 
+
+              LEFT OUTER JOIN
+             Users AS LastMod ON GIBS_FBProductCategory.LastModifiedByUserID = LastMod.UserID
+             
+where  ModuleId = @ModuleId order by ProductCategory
+
+
+GO
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategories_Insert]    Script Date: 09/21/2013 06:56:34 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[GIBS_FBProductCategories_Insert] 
+	@CreatedByUserID INT, 
+	@ModuleId INT, 
+	@ProductCategory NVARCHAR(50), 	
+	@PortalID INT
+	 
+AS 
+BEGIN 
+	SET NOCOUNT ON;
+	
+
+insert into dbo.GIBS_FBProductCategory (
+	ProductCategory,
+	ModuleID,
+	CreatedOnDate,
+	CreatedByUserID,
+	lastModifiedByUserID,
+	LastModifiedOnDate,
+	PortalID
+) 
+values (
+	@ProductCategory,
+	@ModuleId,
+	GETDATE(),
+	@CreatedByUserID,
+	@CreatedByUserID,
+	GETDATE(),
+	@PortalID
+)
+	
+END

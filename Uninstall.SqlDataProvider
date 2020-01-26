@@ -1,0 +1,44 @@
+﻿/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+/** Drop FAQs Table **/
+
+ALTER TABLE {databaseOwner}[{objectQualifier}GIBS_FBFoodInventory] DROP CONSTRAINT [FK_{objectQualifier}GIBS_FBFoodInventory_{objectQualifier}Modules]
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}GIBS_FBFoodInventory] DROP CONSTRAINT [PK_{objectQualifier}GIBS_FBFoodInventory]
+GO
+
+DROP INDEX {databaseOwner}[{objectQualifier}GIBS_FBFoodInventory].[IX_{objectQualifier}GIBS_FBFoodInventory]
+GO
+
+DROP TABLE {databaseOwner}[{objectQualifier}GIBS_FBFoodInventory]
+GO
+
+/** Drop Stored Procedures **/
+
+DROP PROCEDURE {databaseOwner}[{objectQualifier}GIBS_GetFBFoodInventorys]
+GO
+
+DROP PROCEDURE {databaseOwner}[{objectQualifier}GIBS_GetFBFoodInventory]
+GO
+
+DROP PROCEDURE {databaseOwner}[{objectQualifier}GIBS_AddFBFoodInventory]
+GO
+
+DROP PROCEDURE {databaseOwner}[{objectQualifier}GIBS_UpdateFBFoodInventory]
+GO
+
+DROP PROCEDURE {databaseOwner}[{objectQualifier}GIBS_DeleteFBFoodInventory]
+GO
+
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/

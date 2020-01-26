@@ -1,0 +1,375 @@
+﻿
+
+
+IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_GIBS_FBInvoices_Modules]') AND parent_object_id = OBJECT_ID(N'[dbo].[GIBS_FBInvoices]'))
+ALTER TABLE [dbo].[GIBS_FBInvoices] DROP CONSTRAINT [FK_GIBS_FBInvoices_Modules]
+GO
+
+IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBInvoices_FK00]') AND parent_object_id = OBJECT_ID(N'[dbo].[GIBS_FBInvoices]'))
+ALTER TABLE [dbo].[GIBS_FBInvoices] DROP CONSTRAINT [GIBS_FBInvoices_FK00]
+GO
+
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__GIBS_FBIn__Invoi__5DA0D232]') AND type = 'D')
+BEGIN
+ALTER TABLE [dbo].[GIBS_FBInvoices] DROP CONSTRAINT [DF__GIBS_FBIn__Invoi__5DA0D232]
+END
+
+GO
+
+IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBLineItems_FK00]') AND parent_object_id = OBJECT_ID(N'[dbo].[GIBS_FBLineItems]'))
+ALTER TABLE [dbo].[GIBS_FBLineItems] DROP CONSTRAINT [GIBS_FBLineItems_FK00]
+GO
+
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__GIBS_FBLi__Cases__61716316]') AND type = 'D')
+BEGIN
+ALTER TABLE [dbo].[GIBS_FBLineItems] DROP CONSTRAINT [DF__GIBS_FBLi__Cases__61716316]
+END
+
+GO
+
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__GIBS_FBLi__Count__6265874F]') AND type = 'D')
+BEGIN
+ALTER TABLE [dbo].[GIBS_FBLineItems] DROP CONSTRAINT [DF__GIBS_FBLi__Count__6265874F]
+END
+
+GO
+
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__GIBS_FBLi__Price__6359AB88]') AND type = 'D')
+BEGIN
+ALTER TABLE [dbo].[GIBS_FBLineItems] DROP CONSTRAINT [DF__GIBS_FBLi__Price__6359AB88]
+END
+
+GO
+
+IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_GIBS_FBProductCategory_Modules]') AND parent_object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductCategory]'))
+ALTER TABLE [dbo].[GIBS_FBProductCategory] DROP CONSTRAINT [FK_GIBS_FBProductCategory_Modules]
+GO
+
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__GIBS_FBPr__isAct__61674175]') AND type = 'D')
+BEGIN
+ALTER TABLE [dbo].[GIBS_FBProductCategory] DROP CONSTRAINT [DF__GIBS_FBPr__isAct__61674175]
+END
+
+GO
+
+IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_GIBS_FBProducts_Modules]') AND parent_object_id = OBJECT_ID(N'[dbo].[GIBS_FBProducts]'))
+ALTER TABLE [dbo].[GIBS_FBProducts] DROP CONSTRAINT [FK_GIBS_FBProducts_Modules]
+GO
+
+IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProducts_FK00]') AND parent_object_id = OBJECT_ID(N'[dbo].[GIBS_FBProducts]'))
+ALTER TABLE [dbo].[GIBS_FBProducts] DROP CONSTRAINT [GIBS_FBProducts_FK00]
+GO
+
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__GIBS_FBPr__CaseP__4E5E8EA2]') AND type = 'D')
+BEGIN
+ALTER TABLE [dbo].[GIBS_FBProducts] DROP CONSTRAINT [DF__GIBS_FBPr__CaseP__4E5E8EA2]
+END
+
+GO
+
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__GIBS_FBPr__CaseC__4F52B2DB]') AND type = 'D')
+BEGIN
+ALTER TABLE [dbo].[GIBS_FBProducts] DROP CONSTRAINT [DF__GIBS_FBPr__CaseC__4F52B2DB]
+END
+
+GO
+
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__GIBS_FBPr__Produ__5046D714]') AND type = 'D')
+BEGIN
+ALTER TABLE [dbo].[GIBS_FBProducts] DROP CONSTRAINT [DF__GIBS_FBPr__Produ__5046D714]
+END
+
+GO
+
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__GIBS_FBPr__isAct__4D6048C8]') AND type = 'D')
+BEGIN
+ALTER TABLE [dbo].[GIBS_FBProducts] DROP CONSTRAINT [DF__GIBS_FBPr__isAct__4D6048C8]
+END
+
+GO
+
+IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_GIBS_FBSuppliers_Modules]') AND parent_object_id = OBJECT_ID(N'[dbo].[GIBS_FBSuppliers]'))
+ALTER TABLE [dbo].[GIBS_FBSuppliers] DROP CONSTRAINT [FK_GIBS_FBSuppliers_Modules]
+GO
+
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__GIBS_FBSup__GBFB__46BD6CDA]') AND type = 'D')
+BEGIN
+ALTER TABLE [dbo].[GIBS_FBSuppliers] DROP CONSTRAINT [DF__GIBS_FBSup__GBFB__46BD6CDA]
+END
+
+GO
+
+IF  EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[DF__GIBS_FBSu__isAct__60731D3C]') AND type = 'D')
+BEGIN
+ALTER TABLE [dbo].[GIBS_FBSuppliers] DROP CONSTRAINT [DF__GIBS_FBSu__isAct__60731D3C]
+END
+
+GO
+
+
+
+/****** Object:  Table [dbo].[GIBS_FBInvoices]    Script Date: 08/11/2016 11:55:39 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBInvoices]') AND type in (N'U'))
+DROP TABLE [dbo].[GIBS_FBInvoices]
+GO
+
+/****** Object:  Table [dbo].[GIBS_FBLineItems]    Script Date: 08/11/2016 11:55:39 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBLineItems]') AND type in (N'U'))
+DROP TABLE [dbo].[GIBS_FBLineItems]
+GO
+
+/****** Object:  Table [dbo].[GIBS_FBProductCategory]    Script Date: 08/11/2016 11:55:39 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductCategory]') AND type in (N'U'))
+DROP TABLE [dbo].[GIBS_FBProductCategory]
+GO
+
+/****** Object:  Table [dbo].[GIBS_FBProducts]    Script Date: 08/11/2016 11:55:39 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProducts]') AND type in (N'U'))
+DROP TABLE [dbo].[GIBS_FBProducts]
+GO
+
+/****** Object:  Table [dbo].[GIBS_FBSuppliers]    Script Date: 08/11/2016 11:55:39 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBSuppliers]') AND type in (N'U'))
+DROP TABLE [dbo].[GIBS_FBSuppliers]
+GO
+
+
+
+/****** Object:  Table [dbo].[GIBS_FBInvoices]    Script Date: 08/11/2016 11:55:39 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[GIBS_FBInvoices](
+	[InvoiceID] [int] IDENTITY(1,1) NOT NULL,
+	[InvoiceNumber] [nvarchar](50) NULL,
+	[InvoiceDate] [datetime] NULL,
+	[SupplierID] [int] NULL,
+	[ModuleID] [int] NOT NULL,
+	[CreatedOnDate] [datetime] NULL,
+	[CreatedByUserID] [int] NOT NULL,
+	[LastModifiedByUserID] [int] NULL,
+	[LastModifiedOnDate] [datetime] NULL,
+	[PortalID] [int] NULL,
+ CONSTRAINT [aaaaaGIBS_FBInvoices_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[InvoiceID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+/****** Object:  Table [dbo].[GIBS_FBLineItems]    Script Date: 08/11/2016 11:55:39 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[GIBS_FBLineItems](
+	[LineItemID] [int] IDENTITY(1,1) NOT NULL,
+	[InvoiceID] [int] NOT NULL,
+	[ProductID] [int] NOT NULL,
+	[Cases] [int] NULL,
+	[CountPerCase] [int] NULL,
+	[PricePerCase] [money] NULL,
+	[WeightPerCase] [decimal](18, 2) NULL,
+	[GIBS_FBLineItems] [decimal](18, 2) NULL,
+	[ReportType] [varchar](20) NULL,
+ CONSTRAINT [aaaaaLineItems_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[LineItemID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+
+
+/****** Object:  Table [dbo].[GIBS_FBProductCategory]    Script Date: 08/11/2016 11:55:39 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[GIBS_FBProductCategory](
+	[ProductCategoryID] [int] IDENTITY(1,1) NOT NULL,
+	[ProductCategory] [nvarchar](50) NULL,
+	[ModuleID] [int] NOT NULL,
+	[CreatedOnDate] [datetime] NULL,
+	[CreatedByUserID] [int] NOT NULL,
+	[LastModifiedByUserID] [int] NULL,
+	[LastModifiedOnDate] [datetime] NULL,
+	[PortalID] [int] NULL,
+	[isActive] [bit] NOT NULL,
+ CONSTRAINT [aaaaaGIBS_FBProductCategory_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[ProductCategoryID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+
+/****** Object:  Table [dbo].[GIBS_FBProducts]    Script Date: 08/11/2016 11:55:39 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[GIBS_FBProducts](
+	[ProductID] [int] IDENTITY(1,1) NOT NULL,
+	[ProductName] [nvarchar](50) NULL,
+	[CasePrice] [money] NULL,
+	[CaseCount] [int] NULL,
+	[ProductCategoryID] [int] NULL,
+	[ModuleID] [int] NOT NULL,
+	[CreatedOnDate] [datetime] NULL,
+	[CreatedByUserID] [int] NOT NULL,
+	[LastModifiedByUserID] [int] NULL,
+	[LastModifiedOnDate] [datetime] NULL,
+	[PortalID] [int] NULL,
+	[CaseWeight] [decimal](18, 2) NULL,
+	[isActive] [bit] NOT NULL,
+ CONSTRAINT [aaaaaGIBS_FBProducts_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[ProductID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+
+/****** Object:  Table [dbo].[GIBS_FBSuppliers]    Script Date: 08/11/2016 11:55:39 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[GIBS_FBSuppliers](
+	[SupplierID] [int] IDENTITY(1,1) NOT NULL,
+	[SupplierName] [nvarchar](50) NULL,
+	[GBFB] [bit] NOT NULL,
+	[Address] [nvarchar](50) NULL,
+	[City] [nvarchar](50) NULL,
+	[State] [nvarchar](50) NULL,
+	[Zip] [nvarchar](50) NULL,
+	[SupplierPhone] [nvarchar](50) NULL,
+	[Salesman] [nvarchar](50) NULL,
+	[SalesmanPhone] [nvarchar](50) NULL,
+	[ModuleID] [int] NOT NULL,
+	[CreatedOnDate] [datetime] NULL,
+	[CreatedByUserID] [int] NOT NULL,
+	[LastModifiedByUserID] [int] NULL,
+	[LastModifiedOnDate] [datetime] NULL,
+	[PortalID] [int] NULL,
+	[isActive] [bit] NOT NULL,
+ CONSTRAINT [aaaaaGIBS_FBSuppliers_PK] PRIMARY KEY NONCLUSTERED 
+(
+	[SupplierID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[GIBS_FBInvoices]  WITH CHECK ADD  CONSTRAINT [FK_GIBS_FBInvoices_Modules] FOREIGN KEY([ModuleID])
+REFERENCES [dbo].[Modules] ([ModuleID])
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[GIBS_FBInvoices] CHECK CONSTRAINT [FK_GIBS_FBInvoices_Modules]
+GO
+
+ALTER TABLE [dbo].[GIBS_FBInvoices]  WITH CHECK ADD  CONSTRAINT [GIBS_FBInvoices_FK00] FOREIGN KEY([SupplierID])
+REFERENCES [dbo].[GIBS_FBSuppliers] ([SupplierID])
+GO
+
+ALTER TABLE [dbo].[GIBS_FBInvoices] CHECK CONSTRAINT [GIBS_FBInvoices_FK00]
+GO
+
+ALTER TABLE [dbo].[GIBS_FBInvoices] ADD  DEFAULT ((0)) FOR [InvoiceNumber]
+GO
+
+ALTER TABLE [dbo].[GIBS_FBLineItems]  WITH CHECK ADD  CONSTRAINT [GIBS_FBLineItems_FK00] FOREIGN KEY([InvoiceID])
+REFERENCES [dbo].[GIBS_FBInvoices] ([InvoiceID])
+GO
+
+ALTER TABLE [dbo].[GIBS_FBLineItems] CHECK CONSTRAINT [GIBS_FBLineItems_FK00]
+GO
+
+ALTER TABLE [dbo].[GIBS_FBLineItems] ADD  DEFAULT ((0)) FOR [Cases]
+GO
+
+ALTER TABLE [dbo].[GIBS_FBLineItems] ADD  DEFAULT ((0)) FOR [CountPerCase]
+GO
+
+ALTER TABLE [dbo].[GIBS_FBLineItems] ADD  DEFAULT ((0)) FOR [PricePerCase]
+GO
+
+ALTER TABLE [dbo].[GIBS_FBProductCategory]  WITH CHECK ADD  CONSTRAINT [FK_GIBS_FBProductCategory_Modules] FOREIGN KEY([ModuleID])
+REFERENCES [dbo].[Modules] ([ModuleID])
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[GIBS_FBProductCategory] CHECK CONSTRAINT [FK_GIBS_FBProductCategory_Modules]
+GO
+
+ALTER TABLE [dbo].[GIBS_FBProductCategory] ADD  DEFAULT ((1)) FOR [isActive]
+GO
+
+ALTER TABLE [dbo].[GIBS_FBProducts]  WITH CHECK ADD  CONSTRAINT [FK_GIBS_FBProducts_Modules] FOREIGN KEY([ModuleID])
+REFERENCES [dbo].[Modules] ([ModuleID])
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[GIBS_FBProducts] CHECK CONSTRAINT [FK_GIBS_FBProducts_Modules]
+GO
+
+ALTER TABLE [dbo].[GIBS_FBProducts]  WITH CHECK ADD  CONSTRAINT [GIBS_FBProducts_FK00] FOREIGN KEY([ProductCategoryID])
+REFERENCES [dbo].[GIBS_FBProductCategory] ([ProductCategoryID])
+GO
+
+ALTER TABLE [dbo].[GIBS_FBProducts] CHECK CONSTRAINT [GIBS_FBProducts_FK00]
+GO
+
+ALTER TABLE [dbo].[GIBS_FBProducts] ADD  DEFAULT ((0)) FOR [CasePrice]
+GO
+
+ALTER TABLE [dbo].[GIBS_FBProducts] ADD  DEFAULT ((0)) FOR [CaseCount]
+GO
+
+ALTER TABLE [dbo].[GIBS_FBProducts] ADD  DEFAULT ((0)) FOR [ProductCategoryID]
+GO
+
+ALTER TABLE [dbo].[GIBS_FBProducts] ADD  DEFAULT ((1)) FOR [isActive]
+GO
+
+ALTER TABLE [dbo].[GIBS_FBSuppliers]  WITH CHECK ADD  CONSTRAINT [FK_GIBS_FBSuppliers_Modules] FOREIGN KEY([ModuleID])
+REFERENCES [dbo].[Modules] ([ModuleID])
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[GIBS_FBSuppliers] CHECK CONSTRAINT [FK_GIBS_FBSuppliers_Modules]
+GO
+
+ALTER TABLE [dbo].[GIBS_FBSuppliers] ADD  DEFAULT ((0)) FOR [GBFB]
+GO
+
+ALTER TABLE [dbo].[GIBS_FBSuppliers] ADD  DEFAULT ((1)) FOR [isActive]
+GO
+
+

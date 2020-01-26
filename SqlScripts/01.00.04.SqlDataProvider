@@ -1,0 +1,39 @@
+﻿
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBInvoice_GetInvoiceLineItems]    Script Date: 12/14/2013 14:40:43 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBInvoice_GetInvoiceLineItems]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBInvoice_GetInvoiceLineItems]
+GO
+
+
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBInvoice_GetInvoiceLineItems]    Script Date: 12/14/2013 14:40:43 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[GIBS_FBInvoice_GetInvoiceLineItems]
+
+	
+	@InvoiceID int
+
+as
+BEGIN
+
+SELECT     GIBS_FBLineItems.LineItemID, GIBS_FBLineItems.InvoiceID, 
+		GIBS_FBLineItems.ProductID, GIBS_FBLineItems.Cases, GIBS_FBLineItems.CountPerCase, 
+        GIBS_FBLineItems.PricePerCase, GIBS_FBProducts.ProductName, 
+        COALESCE(GIBS_FBLineItems.WeightPerCase,0) AS WeightPerCase, 
+        (COALESCE(GIBS_FBLineItems.PricePerCase, 0) * COALESCE(GIBS_FBLineItems.Cases, 0)) as TotalCostExtended,
+        (COALESCE(GIBS_FBLineItems.WeightPerCase, 0) * COALESCE(GIBS_FBLineItems.Cases, 0)) AS TotalWeightPerCase
+        
+FROM         GIBS_FBLineItems INNER JOIN
+                      GIBS_FBProducts ON GIBS_FBLineItems.ProductID = GIBS_FBProducts.ProductID
+
+
+	where  InvoiceID = @InvoiceID
+END
+GO
+

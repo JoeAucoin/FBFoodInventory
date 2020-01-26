@@ -1,0 +1,611 @@
+﻿
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBSuppliers_Update]    Script Date: 7/28/2015 5:54:45 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBSuppliers_Update]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBSuppliers_Update]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBSuppliers_List]    Script Date: 7/28/2015 5:54:45 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBSuppliers_List]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBSuppliers_List]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBSuppliers_Insert]    Script Date: 7/28/2015 5:54:45 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBSuppliers_Insert]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBSuppliers_Insert]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBSuppliers_GetByID]    Script Date: 7/28/2015 5:54:45 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBSuppliers_GetByID]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBSuppliers_GetByID]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProducts_Update]    Script Date: 7/28/2015 5:54:45 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProducts_Update]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProducts_Update]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProducts_List]    Script Date: 7/28/2015 5:54:45 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProducts_List]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProducts_List]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProducts_Insert]    Script Date: 7/28/2015 5:54:45 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProducts_Insert]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProducts_Insert]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProducts_GetByID]    Script Date: 7/28/2015 5:54:45 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProducts_GetByID]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProducts_GetByID]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategory_Update]    Script Date: 7/28/2015 5:54:45 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductCategory_Update]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProductCategory_Update]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategory_List]    Script Date: 7/28/2015 5:54:45 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductCategory_List]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProductCategory_List]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategory_GetByID]    Script Date: 7/28/2015 5:54:45 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductCategory_GetByID]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProductCategory_GetByID]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategories_Insert]    Script Date: 7/28/2015 5:54:45 AM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductCategories_Insert]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProductCategories_Insert]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategories_Insert]    Script Date: 7/28/2015 5:54:45 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductCategories_Insert]') AND type in (N'P', N'PC'))
+BEGIN
+EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[GIBS_FBProductCategories_Insert] AS' 
+END
+GO
+
+
+ALTER PROCEDURE [dbo].[GIBS_FBProductCategories_Insert] 
+	@CreatedByUserID INT, 
+	@ModuleId INT, 
+	@ProductCategory NVARCHAR(50), 	
+	@PortalID INT,
+	@IsActive bit
+	 
+AS 
+BEGIN 
+	SET NOCOUNT ON;
+	
+
+insert into dbo.GIBS_FBProductCategory (
+	ProductCategory,
+	ModuleID,
+	CreatedOnDate,
+	CreatedByUserID,
+	lastModifiedByUserID,
+	LastModifiedOnDate,
+	PortalID,
+	isActive
+) 
+values (
+	@ProductCategory,
+	@ModuleId,
+	GETDATE(),
+	@CreatedByUserID,
+	@CreatedByUserID,
+	GETDATE(),
+	@PortalID,
+	@IsActive
+)
+	
+END
+
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategory_GetByID]    Script Date: 7/28/2015 5:54:45 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductCategory_GetByID]') AND type in (N'P', N'PC'))
+BEGIN
+EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[GIBS_FBProductCategory_GetByID] AS' 
+END
+GO
+
+ALTER procedure [dbo].[GIBS_FBProductCategory_GetByID]
+
+	@ModuleId int,
+	@ProductCategoryID int
+
+as
+
+SELECT     ProductCategoryID, ProductCategory,
+ ModuleID, 
+GIBS_FBProductCategory.CreatedOnDate, GIBS_FBProductCategory.CreatedByUserID, 
+GIBS_FBProductCategory.LastModifiedByUserID, GIBS_FBProductCategory.LastModifiedOnDate, PortalID,
+'CreatedByUserName' = Users.FirstName + ' ' + Users.LastName
+,isActive
+from GIBS_FBProductCategory
+left outer join Users on GIBS_FBProductCategory.CreatedByUserID = Users.UserId
+where  ModuleId = @ModuleId and ProductCategoryID = @ProductCategoryID
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategory_List]    Script Date: 7/28/2015 5:54:45 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductCategory_List]') AND type in (N'P', N'PC'))
+BEGIN
+EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[GIBS_FBProductCategory_List] AS' 
+END
+GO
+
+ALTER procedure [dbo].[GIBS_FBProductCategory_List]
+
+	@ModuleId int
+
+as
+
+SELECT     
+ProductCategoryID, ProductCategory, ModuleID, GIBS_FBProductCategory.CreatedOnDate, 
+GIBS_FBProductCategory.CreatedByUserID, GIBS_FBProductCategory.LastModifiedByUserID, 
+GIBS_FBProductCategory.LastModifiedOnDate, 
+PortalID, 
+'CreatedByUserName' = Users.FirstName + ' ' + Users.LastName,
+LastMod.FirstName + ' ' + LastMod.LastName AS 'LastModifiedByUserName'
+,isActive
+from dbo.GIBS_FBProductCategory
+left outer join Users on GIBS_FBProductCategory.CreatedByUserID = Users.UserId 
+
+              LEFT OUTER JOIN
+             Users AS LastMod ON GIBS_FBProductCategory.LastModifiedByUserID = LastMod.UserID
+             
+where  ModuleId = @ModuleId order by ProductCategory
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategory_Update]    Script Date: 7/28/2015 5:54:45 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductCategory_Update]') AND type in (N'P', N'PC'))
+BEGIN
+EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[GIBS_FBProductCategory_Update] AS' 
+END
+GO
+
+
+ALTER PROCEDURE [dbo].[GIBS_FBProductCategory_Update] 
+	@ProductCategoryID INT, 
+	@ModuleId INT, 
+	@ProductCategory NVARCHAR(50), 
+	@LastModifiedByUserID INT,
+	@PortalID INT,
+	@IsActive bit
+	 
+AS 
+BEGIN 
+	SET NOCOUNT ON;
+	
+	UPDATE dbo.GIBS_FBProductCategory
+		SET 
+		ProductCategory = @ProductCategory,
+		LastModifiedByUserID = @LastModifiedByUserID,
+		LastModifiedOnDate = GETDATE(),
+		PortalID = @PortalID,
+		IsActive = @IsActive
+		
+		WHERE  ModuleId = @ModuleId
+		and ProductCategoryID = @ProductCategoryID;
+	
+END
+
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProducts_GetByID]    Script Date: 7/28/2015 5:54:45 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProducts_GetByID]') AND type in (N'P', N'PC'))
+BEGIN
+EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[GIBS_FBProducts_GetByID] AS' 
+END
+GO
+
+ALTER procedure [dbo].[GIBS_FBProducts_GetByID]
+
+	@ModuleId int,
+	@ProductID int
+
+as
+
+BEGIN
+
+	SELECT     ProductID, ProductName, CasePrice, 
+	CaseCount, GIBS_FBProducts.ProductCategoryID, GIBS_FBProductCategory.ProductCategory,
+	 GIBS_FBProducts.ModuleID, CaseWeight, 
+	GIBS_FBProducts.CreatedOnDate, GIBS_FBProducts.CreatedByUserID, 
+	GIBS_FBProducts.LastModifiedByUserID, GIBS_FBProducts.LastModifiedOnDate, GIBS_FBProducts.PortalID,
+	'CreatedByUserName' = Users.FirstName + ' ' + Users.LastName,
+	GIBS_FBProducts.isActive
+	from GIBS_FBProducts 
+	INNER JOIN
+	GIBS_FBProductCategory ON GIBS_FBProducts.ProductCategoryID = GIBS_FBProductCategory.ProductCategoryID
+
+	left outer join Users on GIBS_FBProducts.CreatedByUserID = Users.UserId
+	where  GIBS_FBProducts.ModuleId = @ModuleId and GIBS_FBProducts.ProductID = @ProductID
+
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProducts_Insert]    Script Date: 7/28/2015 5:54:45 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProducts_Insert]') AND type in (N'P', N'PC'))
+BEGIN
+EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[GIBS_FBProducts_Insert] AS' 
+END
+GO
+
+ALTER PROCEDURE [dbo].[GIBS_FBProducts_Insert] 
+	
+	@ProductName NVARCHAR(50), 
+	@CasePrice money,
+	@CaseCount INT,
+	@ProductCategoryID INT,
+	@CreatedByUserID INT, 
+	@ModuleId INT, 
+	@PortalID INT,
+	@CaseWeight float,
+	@IsActive bit
+	 
+AS 
+BEGIN 
+	SET NOCOUNT ON;
+	
+
+insert into dbo.GIBS_FBProducts (
+	ProductName,
+	CasePrice,
+	CaseCount,
+	ProductCategoryID,
+	ModuleID,
+	CreatedOnDate,
+	CreatedByUserID,
+	PortalID,
+	CaseWeight,
+	IsActive
+) 
+values (
+	@ProductName,
+	@CasePrice,
+	@CaseCount,
+	@ProductCategoryID,
+	@ModuleId,
+	GETDATE(),
+	@CreatedByUserID,
+	@PortalID,
+	@CaseWeight,
+	@IsActive
+)
+
+select SCOPE_IDENTITY()
+	
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProducts_List]    Script Date: 7/28/2015 5:54:45 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProducts_List]') AND type in (N'P', N'PC'))
+BEGIN
+EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[GIBS_FBProducts_List] AS' 
+END
+GO
+
+ALTER procedure [dbo].[GIBS_FBProducts_List]
+
+	@ModuleId int
+
+as
+BEGIN 
+
+	SELECT     GIBS_FBProducts.ProductID, GIBS_FBProducts.ProductName, 
+	GIBS_FBProducts.CasePrice, GIBS_FBProducts.CaseCount, GIBS_FBProducts.CaseWeight,
+	GIBS_FBProducts.ProductCategoryID, GIBS_FBProductCategory.ProductCategory,GIBS_FBProducts.ProductCategoryID,
+	GIBS_FBProducts.ModuleID, GIBS_FBProducts.CreatedOnDate, 
+	GIBS_FBProducts.CreatedByUserID, GIBS_FBProducts.LastModifiedByUserID, 
+	GIBS_FBProducts.LastModifiedOnDate, GIBS_FBProducts.PortalID, 
+	Users.FirstName + ' ' + Users.LastName AS 'CreatedByUserName',
+	LastMod.FirstName + ' ' + LastMod.LastName AS 'LastModifiedByUserName',
+	GIBS_FBProducts.IsActive,
+	GIBS_FBProductCategory.ProductCategory + ' - ' + GIBS_FBProducts.ProductName AS ProductNameDropdown
+                      
+FROM         GIBS_FBProducts 
+			INNER JOIN
+            GIBS_FBProductCategory ON GIBS_FBProducts.ProductCategoryID = GIBS_FBProductCategory.ProductCategoryID
+              
+              LEFT OUTER JOIN
+             Users AS LastMod ON GIBS_FBProducts.LastModifiedByUserID = LastMod.UserID
+                      
+              LEFT OUTER JOIN
+             Users AS Users ON GIBS_FBProducts.CreatedByUserID = Users.UserID
+WHERE     (GIBS_FBProducts.ModuleID = @ModuleId)
+ORDER BY GIBS_FBProductCategory.ProductCategory, GIBS_FBProducts.ProductName
+
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProducts_Update]    Script Date: 7/28/2015 5:54:45 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProducts_Update]') AND type in (N'P', N'PC'))
+BEGIN
+EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[GIBS_FBProducts_Update] AS' 
+END
+GO
+
+ALTER PROCEDURE [dbo].[GIBS_FBProducts_Update] 
+	@ProductID INT,
+	@ProductName NVARCHAR(50), 
+	@CasePrice money,
+	@CaseCount INT,
+	@ProductCategoryID INT,
+	@ModuleId INT, 
+	@LastModifiedByUserID INT,
+	@PortalID INT,
+	@CaseWeight float,
+	@IsActive bit
+	 
+AS 
+BEGIN 
+	SET NOCOUNT ON;
+	
+	UPDATE dbo.GIBS_FBProducts
+		SET 
+		ProductName = @ProductName,
+		CasePrice = @CasePrice,
+		CaseCount = @CaseCount,
+		ProductCategoryID = @ProductCategoryID,
+		LastModifiedByUserID = @LastModifiedByUserID,
+		LastModifiedOnDate = GETDATE(),
+		PortalID = @PortalID,
+		CaseWeight = @CaseWeight,
+		IsActive = @IsActive
+		
+		WHERE  ModuleId = @ModuleId
+		and ProductID = @ProductID;
+	
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBSuppliers_GetByID]    Script Date: 7/28/2015 5:54:45 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBSuppliers_GetByID]') AND type in (N'P', N'PC'))
+BEGIN
+EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[GIBS_FBSuppliers_GetByID] AS' 
+END
+GO
+
+ALTER procedure [dbo].[GIBS_FBSuppliers_GetByID]
+
+	@ModuleId int,
+	@SupplierID int
+
+as
+
+SELECT     SupplierID, SupplierName, GBFB, 
+Address, City, State, Zip, 
+SupplierPhone, Salesman, 
+SalesmanPhone, ModuleID, 
+GIBS_FBSuppliers.CreatedOnDate, GIBS_FBSuppliers.CreatedByUserID, 
+GIBS_FBSuppliers.LastModifiedByUserID, GIBS_FBSuppliers.LastModifiedOnDate, PortalID,
+'CreatedByUserName' = Users.FirstName + ' ' + Users.LastName,
+isActive
+from GIBS_FBSuppliers
+left outer join Users on GIBS_FBSuppliers.CreatedByUserID = Users.UserId
+where  ModuleId = @ModuleId and SupplierID = @SupplierID
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBSuppliers_Insert]    Script Date: 7/28/2015 5:54:45 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBSuppliers_Insert]') AND type in (N'P', N'PC'))
+BEGIN
+EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[GIBS_FBSuppliers_Insert] AS' 
+END
+GO
+
+ALTER PROCEDURE [dbo].[GIBS_FBSuppliers_Insert] 
+	@CreatedByUserID INT, 
+	@ModuleId INT, 
+	@SupplierName NVARCHAR(50), 
+	@GBFB bit, 
+	@Address NVARCHAR(50), 
+	@City NVARCHAR(50), 
+	@State NVARCHAR(50),
+	@Zip NVARCHAR(50),
+	@SupplierPhone NVARCHAR(50),
+	@Salesman NVARCHAR(50),
+	@SalesmanPhone NVARCHAR(50),
+	
+	@PortalID INT,
+	@IsActive bit
+	 
+AS 
+BEGIN 
+	SET NOCOUNT ON;
+	
+
+insert into GIBS_FBSuppliers (
+	SupplierName,
+	GBFB,
+	Address,
+	City,
+	State,
+	Zip,
+	SupplierPhone,
+	Salesman,
+	SalesmanPhone,
+	ModuleID,
+	CreatedOnDate,
+	CreatedByUserID,
+	PortalID,
+	IsActive
+) 
+values (
+	@SupplierName,
+	@GBFB,
+	@Address,
+	@City,
+	@State,
+	@Zip,
+	@SupplierPhone,
+	@Salesman,
+	@SalesmanPhone,
+	@ModuleId,
+	GETDATE(),
+	@CreatedByUserID,
+	@PortalID,
+	@IsActive
+)
+
+
+	
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBSuppliers_List]    Script Date: 7/28/2015 5:54:45 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBSuppliers_List]') AND type in (N'P', N'PC'))
+BEGIN
+EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[GIBS_FBSuppliers_List] AS' 
+END
+GO
+
+ALTER procedure [dbo].[GIBS_FBSuppliers_List]
+
+	@ModuleId int
+
+as
+BEGIN 
+
+	SELECT     SupplierID, SupplierName, GBFB, 
+	Address, City, State, Zip, 
+	SupplierPhone, Salesman, 
+	SalesmanPhone, ModuleID, 
+	GIBS_FBSuppliers.CreatedOnDate, GIBS_FBSuppliers.CreatedByUserID, 
+	GIBS_FBSuppliers.LastModifiedByUserID, GIBS_FBSuppliers.LastModifiedOnDate, PortalID,
+	'CreatedByUserName' = Users.FirstName + ' ' + Users.LastName,
+	isActive
+	from GIBS_FBSuppliers
+	left outer join Users on GIBS_FBSuppliers.CreatedByUserID = Users.UserId
+	where  ModuleId = @ModuleId
+	order by SupplierName
+
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBSuppliers_Update]    Script Date: 7/28/2015 5:54:45 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBSuppliers_Update]') AND type in (N'P', N'PC'))
+BEGIN
+EXEC dbo.sp_executesql @statement = N'CREATE PROCEDURE [dbo].[GIBS_FBSuppliers_Update] AS' 
+END
+GO
+
+ALTER PROCEDURE [dbo].[GIBS_FBSuppliers_Update] 
+	@SupplierID INT, 
+	@ModuleId INT, 
+	@SupplierName NVARCHAR(50), 
+	@GBFB bit, 
+	@Address NVARCHAR(50), 
+	@City NVARCHAR(50), 
+	@State NVARCHAR(50),
+	@Zip NVARCHAR(50),
+	@SupplierPhone NVARCHAR(50),
+	@Salesman NVARCHAR(50),
+	@SalesmanPhone NVARCHAR(50),
+	@LastModifiedByUserID INT,
+	@PortalID INT,
+	@IsActive bit
+	 
+AS 
+BEGIN 
+	SET NOCOUNT ON;
+	
+	UPDATE dbo.GIBS_FBSuppliers
+		SET [ModuleId] = @ModuleId,
+		SupplierName = @SupplierName,
+		GBFB = @GBFB,
+		[Address] = @Address,
+		City = @City,
+		[State] = @State,
+		Zip = @Zip,
+		SupplierPhone = @SupplierPhone,
+		Salesman = @Salesman,
+		SalesmanPhone = @SalesmanPhone,
+		LastModifiedByUserID = @LastModifiedByUserID,
+		LastModifiedOnDate = GETDATE(),
+		PortalID = @PortalID,
+		
+	IsActive = @IsActive 
+		
+		WHERE  ModuleId = @ModuleId
+		and SupplierID = @SupplierID;
+	
+END
+GO
+
+

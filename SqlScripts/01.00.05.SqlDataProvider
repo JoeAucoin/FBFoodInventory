@@ -1,0 +1,99 @@
+﻿
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBInvoice_Delete]    Script Date: 12/15/2013 05:50:24 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBInvoice_Delete]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBInvoice_Delete]
+GO
+
+
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBInvoice_Delete]    Script Date: 12/15/2013 05:50:24 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure [dbo].[GIBS_FBInvoice_Delete]
+
+	@InvoiceID INT
+
+as
+
+BEGIN
+
+DELETE 
+FROM         GIBS_FBLineItems
+WHERE     (InvoiceID = @InvoiceID)
+
+
+ 
+DELETE FROM GIBS_FBInvoices
+WHERE     (InvoiceID = @InvoiceID)
+
+END
+
+GO
+
+
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBLineItems_Delete]    Script Date: 12/15/2013 05:51:32 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBLineItems_Delete]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBLineItems_Delete]
+GO
+
+
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBLineItems_Delete]    Script Date: 12/15/2013 05:51:32 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[GIBS_FBLineItems_Delete]
+
+	@LineItemID       int
+
+as
+
+BEGIN
+
+DELETE FROM GIBS_FBLineItems
+WHERE     (LineItemID = @LineItemID)
+
+END
+GO
+
+
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProducts_Delete]    Script Date: 12/15/2013 05:52:42 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProducts_Delete]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProducts_Delete]
+GO
+
+
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProducts_Delete]    Script Date: 12/15/2013 05:52:42 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure [dbo].[GIBS_FBProducts_Delete]
+
+	@ProductID INT
+
+as
+
+BEGIN
+
+DELETE FROM GIBS_FBProducts
+WHERE     (ProductID = @ProductID)
+
+END
+
+GO
