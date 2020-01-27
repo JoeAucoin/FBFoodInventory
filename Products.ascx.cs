@@ -12,8 +12,7 @@ using DotNetNuke.Services.Localization;
 
 using DotNetNuke.Common;
 using System.Drawing;
-using Telerik;
-using Telerik.Web.UI;
+
 using System.Data;
 using System.ComponentModel;
 using DotNetNuke.Framework.JavaScriptLibraries;
@@ -32,11 +31,9 @@ namespace GIBS.Modules.FBFoodInventory
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            DotNetNuke.Framework.jQuery.RequestRegistration();
-            DotNetNuke.Framework.jQuery.RequestUIRegistration();
-
-            //JavaScript.RequestRegistration(CommonJs.jQuery);
-            //JavaScript.RequestRegistration(CommonJs.jQueryUI);
+            
+            JavaScript.RequestRegistration(CommonJs.jQuery);
+            JavaScript.RequestRegistration(CommonJs.jQueryUI);
             Page.ClientScript.RegisterClientScriptInclude(this.GetType(), "InputMasks", (this.TemplateSourceDirectory + "/JavaScript/jquery.maskedinput-1.3.js"));
             
             if (!IsPostBack)
@@ -166,13 +163,17 @@ namespace GIBS.Modules.FBFoodInventory
 
             try
             {
-                // CreatePrefixSuffixDropdowns();
-
+                
                 List<FBFoodInventoryInfo> items;
                 FBFoodInventoryController controller = new FBFoodInventoryController();
 
                 items = controller.FBProductCategory_List(this.ModuleId);
 
+                if(items.Count == 0)
+                {
+                    lblDebug.Text = Localization.GetString("errorAddCategoriesFirst.Text", LocalResourceFile).ToString();
+                    btnAddNew.Enabled = false;
+                }
 
                 ddlProductCategory.DataTextField = "ProductCategory";
                 ddlProductCategory.DataValueField = "ProductCategoryID";

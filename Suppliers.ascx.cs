@@ -13,6 +13,7 @@ using GIBS.FBFoodInventory.Components;
 using DotNetNuke.Common;
 using DotNetNuke.Common.Lists;
 using System.Data;
+using DotNetNuke.Framework.JavaScriptLibraries;
 
 namespace GIBS.Modules.FBFoodInventory
 {
@@ -24,9 +25,9 @@ namespace GIBS.Modules.FBFoodInventory
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            DotNetNuke.Framework.jQuery.RequestRegistration();
-            DotNetNuke.Framework.jQuery.RequestUIRegistration();
-            Page.ClientScript.RegisterClientScriptInclude(this.GetType(), "InputMasks", (this.TemplateSourceDirectory + "/JavaScript/jquery.maskedinput-1.3.js"));
+            JavaScript.RequestRegistration(CommonJs.jQuery);
+            JavaScript.RequestRegistration(CommonJs.jQueryUI);
+            Page.ClientScript.RegisterClientScriptInclude(this.GetType(), "InputMasks", (this.TemplateSourceDirectory + "/JavaScript/jquery.maskedinput.js"));
 
             if (!IsPostBack)
             {
@@ -130,8 +131,8 @@ namespace GIBS.Modules.FBFoodInventory
 
             try
             {
-                ListController lc = new ListController();
-                ListEntryInfoCollection leic = lc.GetListEntryInfoCollection("Region", "Country.US");
+                
+                var leic = new ListController().GetListEntryInfoItems("Region", "Country.US", this.PortalId);
                 ddlState.DataTextField = "Text";
                 ddlState.DataValueField = "Value";
                 ddlState.DataSource = leic;

@@ -168,7 +168,7 @@
   <data name="lblCategoryFilter.Text" xml:space="preserve">
     <value>Filter Products</value>
   </data>
-<<<<<<< .mine
+
   <data name="ProductCategories.Text" xml:space="preserve">
     <value>Manage Product Categories</value>
   </data>
@@ -187,8 +187,7 @@
   <data name="OrganizationError.Text" xml:space="preserve">
     <value>&lt;span style="color:white;"&gt;Entity is Required&lt;/span&gt;</value>
   </data>
-||||||| .r23
-=======
+
   <data name="ProductCategories.Text" xml:space="preserve">
     <value>Manage Product Categories</value>
   </data>
@@ -198,5 +197,5 @@
   <data name="Suppliers.Text" xml:space="preserve">
     <value>Manage Suppliers</value>
   </data>
->>>>>>> .r312
+
 </root>

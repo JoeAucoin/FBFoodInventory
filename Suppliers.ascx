@@ -107,7 +107,7 @@
        <div class="dnnFormItem">
           <dnn:Label runat="server" ID="lblIsActive" ControlName="rblIsActive" ResourceKey="lblIsActive" Suffix=":" />
                 <asp:RadioButtonList ID="rblIsActive" runat="server" RepeatDirection="Horizontal">
-                <asp:ListItem Text="True" Value="True" />
+                <asp:ListItem Text="True" Value="True" Selected="True" />
                 <asp:ListItem Text="False" Value="False" />
                 </asp:RadioButtonList>
         </div>
@@ -116,9 +116,9 @@
     <asp:HiddenField ID="txtSupplierID" runat="server" />
 
     <ul class="dnnActions dnnClear">
-        <li><asp:LinkButton ID="btnSave" runat="server" CssClass="dnnPrimaryAction" 
+        <li><asp:LinkButton ID="btnSave" runat="server" CssClass="btn btn-primary" 
                 ResourceKey="Save" onclick="btnSave_Click" /></li>
-        <li><asp:LinkButton ID="btnCancel" runat="server" CssClass="dnnSecondaryAction" CausesValidation="False" 
+        <li><asp:LinkButton ID="btnCancel" runat="server" CssClass="btn btn-default" CausesValidation="False" 
         ResourceKey="btnCancel" onclick="btnCancel_Click" /></li>
     </ul>
 
@@ -127,7 +127,7 @@
 </asp:Panel>
 
 
-<div style="text-align:right"><asp:Button ID="btnReturnToFrontDesk" resourcekey="btnReturnToFrontDesk" CausesValidation="False" runat="server" CssClass="dnnSecondaryAction" 
+<div style="text-align:right"><asp:Button ID="btnReturnToFrontDesk" resourcekey="btnReturnToFrontDesk" CausesValidation="False" runat="server" CssClass="btn btn-default" 
                 Text="Return" onclick="btnReturnToFrontDesk_Click" /></div>
 
 </div>

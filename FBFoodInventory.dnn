@@ -1,6 +1,6 @@
 ﻿<dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="GIBS.FBFoodInventory" type="Module" version="1.0.13">
+    <package name="GIBS.FBFoodInventory" type="Module" version="1.0.14">
       <friendlyName>GIBS Food Bank Food Tracking</friendlyName>
       <description>GIBS Food Bank Food Inventory Tracking</description>
       <iconFile />
@@ -65,7 +65,7 @@
         &lt;p&gt;&lt;span&gt;GIBS does not issue refunds. The decision to issue a refund is on the sole discretion of GIBS. By placing an order for any of our products, you indicate that you have read this refund policy and that you agree with and fully accept the terms of this refund policy.&lt;/span&gt;&lt;/p&gt;
         &lt;p&gt;&lt;span&gt;Any requests for a refund will be dealt with on a case-by-case basis and must be submitted within 15 days of placing the order. You are required to provide detailed reasons why you are requesting this refund.&lt;/span&gt;&lt;/p&gt;
         &lt;p&gt;&lt;span&gt;If you have any questions regarding this EULA, please email: support@GIBS.com&lt;/span&gt;&lt;/p&gt;
-        &lt;p&gt;&lt;span&gt;Copyright (c) 2016 by GIBS&lt;/span&gt;&lt;/p&gt;
+        &lt;p&gt;&lt;span&gt;Copyright (c) 2020 by GIBS&lt;/span&gt;&lt;/p&gt;
       </license>
       <releaseNotes>This package has no Release Notes</releaseNotes>
       <components>
@@ -124,7 +124,7 @@
             </script>
             <script type="UnInstall">
               <name>Uninstall.SqlDataProvider</name>
-              <version>1.0.13</version>
+              <version>1.0.14</version>
             </script>
           </scripts>
         </component>
@@ -223,9 +223,6 @@
             <basePath>bin</basePath>
             <assembly>
               <name>GIBS.Modules.FBFoodInventory.dll</name>
-            </assembly>
-            <assembly>
-              <name>GIBS.Modules.FBReports.dll</name>
             </assembly>
           </assemblies>
         </component>

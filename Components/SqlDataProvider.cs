@@ -175,9 +175,9 @@ namespace GIBS.FBFoodInventory.Components
         //    SqlHelper.ExecuteNonQuery(connectionString, GetFullyQualifiedName("FBInvoice_Insert"), invoiceNumber, invoiceDate, supplierID, createdByUserID, moduleId, portalId);
         //}
 
-        public override int FBInvoice_Insert(string invoiceNumber, DateTime invoiceDate, int supplierID, int createdByUserID, int moduleId, int portalId)
+        public override int FBInvoice_Insert(string invoiceNumber, DateTime invoiceDate, int supplierID, int createdByUserID, int moduleId, int portalId, string organization)
         {
-            return Convert.ToInt32(SqlHelper.ExecuteScalar(connectionString, GetFullyQualifiedName("FBInvoice_Insert"), invoiceNumber, invoiceDate, supplierID, createdByUserID, moduleId, portalId));
+            return Convert.ToInt32(SqlHelper.ExecuteScalar(connectionString, GetFullyQualifiedName("FBInvoice_Insert"), invoiceNumber, invoiceDate, supplierID, createdByUserID, moduleId, portalId, organization));
         }
 
         public override IDataReader FBInvoice_GetByID(int moduleId, int itemId)
@@ -185,9 +185,9 @@ namespace GIBS.FBFoodInventory.Components
             return (IDataReader)SqlHelper.ExecuteReader(connectionString, GetFullyQualifiedName("FBInvoice_GetByID"), moduleId, itemId);
         }
 
-        public override void FBInvoice_Update(int invoiceID, string invoiceNumber, DateTime invoiceDate, int supplierID, int moduleId, int lastModifiedByUserID, int portalId)
+        public override void FBInvoice_Update(int invoiceID, string invoiceNumber, DateTime invoiceDate, int supplierID, int moduleId, int lastModifiedByUserID, int portalId, string organization)
         {
-            SqlHelper.ExecuteNonQuery(connectionString, GetFullyQualifiedName("FBInvoice_Update"), invoiceID, invoiceNumber, invoiceDate, supplierID, moduleId, lastModifiedByUserID, portalId);
+            SqlHelper.ExecuteNonQuery(connectionString, GetFullyQualifiedName("FBInvoice_Update"), invoiceID, invoiceNumber, invoiceDate, supplierID, moduleId, lastModifiedByUserID, portalId, organization);
         }
 
         public override void FBInvoice_Delete(int invoiceID)
@@ -221,10 +221,10 @@ namespace GIBS.FBFoodInventory.Components
         }
 
         // Reports
-        public override IDataReader FBReports_Food_Inventory(DateTime startDate, DateTime endDate, int portalId)
-        {
-            return (IDataReader)SqlHelper.ExecuteReader(connectionString, GetFullyQualifiedName("FBReports_Food_Inventory"), startDate, endDate, portalId);
-        }
+        //public override IDataReader FBReports_Food_Inventory(DateTime startDate, DateTime endDate, int portalId)
+        //{
+        //    return (IDataReader)SqlHelper.ExecuteReader(connectionString, GetFullyQualifiedName("FBReports_Food_Inventory"), startDate, endDate, portalId);
+        //}
 
         #endregion
     }

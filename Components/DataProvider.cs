@@ -69,11 +69,11 @@ namespace GIBS.FBFoodInventory.Components
         //Invoices
         //public abstract void FBInvoice_Insert(string invoiceNumber, DateTime invoiceDate, int supplierID, int createdByUserID, int moduleId, int portalId);
 
-        public abstract int FBInvoice_Insert(string invoiceNumber, DateTime invoiceDate, int supplierID, int createdByUserID, int moduleId, int portalId);
+        public abstract int FBInvoice_Insert(string invoiceNumber, DateTime invoiceDate, int supplierID, int createdByUserID, int moduleId, int portalId, string organization);
 
         public abstract IDataReader FBInvoice_List(int moduleId);
         public abstract IDataReader FBInvoice_GetByID(int moduleId, int invoiceID);
-        public abstract void FBInvoice_Update(int invoiceID, string invoiceNumber, DateTime invoiceDate, int supplierID, int moduleId, int lastModifiedByUserID, int portalId);
+        public abstract void FBInvoice_Update(int invoiceID, string invoiceNumber, DateTime invoiceDate, int supplierID, int moduleId, int lastModifiedByUserID, int portalId, string organization);
         public abstract IDataReader FBInvoice_GetInvoiceLineItems(int invoiceID);
         public abstract void FBInvoice_Delete(int invoiceID);
 
@@ -84,7 +84,7 @@ namespace GIBS.FBFoodInventory.Components
         public abstract IDataReader FBLineItems_GetByID(int lineItemID);
 
         // Reports
-        public abstract IDataReader FBReports_Food_Inventory(DateTime startDate, DateTime endDate, int portalId);
+  //      public abstract IDataReader FBReports_Food_Inventory(DateTime startDate, DateTime endDate, int portalId);
 
         #endregion
 

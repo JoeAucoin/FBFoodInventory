@@ -165,4 +165,7 @@
   <data name="Suppliers.Text" xml:space="preserve">
     <value>Manage Suppliers</value>
   </data>
+  <data name="errorAddCategoriesFirst.Text" xml:space="preserve">
+    <value>You need to add categories before you can add any products.</value>
+  </data>
 </root>

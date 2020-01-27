@@ -2,7 +2,7 @@
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
 <%@ Register TagPrefix="dnn" Assembly="DotNetNuke.Web" Namespace="DotNetNuke.Web.UI.WebControls" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
-<dnn:DnnCssInclude ID="DnnCssInclude1" runat="server" FilePath="~/DesktopModules/GIBS/FBFoodInventory/Style.css" />
+
 <dnn:DnnCssInclude ID="DnnCssInclude2" runat="server" FilePath="https://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/smoothness/jquery-ui.css" />
 
 <script type="text/javascript">
@@ -34,14 +34,9 @@ OnRowEditing="gvInvoices_RowEditing"
 OnRowDeleting="gvInvoices_RowDeleting" 
 OnPageIndexChanging="gvInvoices_PageIndexChanging"     
     AutoGenerateColumns="False" 
-    GridLines="Horizontal" resourcekey="gvProducts" AllowPaging="True" PageSize="20" CssClass="dnnGrid">
-    <AlternatingRowStyle cssclass="dnnGridAltItem" />
-    <FooterStyle cssclass="dnnGridFooter" />
-    <HeaderStyle cssclass="dnnGridHeader" />
-    <PagerStyle cssclass="dnnGridPager" />
-    <RowStyle cssclass="dnnGridItem" />
-    <SelectedRowStyle cssclass="dnnFormError" />
-<PagerStyle HorizontalAlign="Left"  BackColor="DodgerBlue" Height="20px" Font-Size="Small" ForeColor="Snow" />  
+    GridLines="Horizontal" resourcekey="gvProducts" AllowPaging="True" PageSize="2" CssClass="table table-striped table-bordered table-list">
+    
+<PagerStyle  CssClass="pagination-ys" />  
 <PagerSettings Mode="NumericFirstLast" /> 
 
     

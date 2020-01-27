@@ -1,5 +1,4 @@
-<<<<<<< .mine
-﻿
+
 
 IF COL_LENGTH('GIBS_FBLineItems','WeightPerCase') IS NULL
  BEGIN
@@ -8,19 +7,6 @@ IF COL_LENGTH('GIBS_FBLineItems','WeightPerCase') IS NULL
  END
 
 
-||||||| .r23
-﻿ALTER TABLE dbo.GIBS_FBLineItems  ADD WeightPerCase Decimal(18,2)
-=======
-﻿
-
-IF COL_LENGTH('GIBS_FBLineItems','GIBS_FBLineItems') IS NULL
- BEGIN
- /*Column does not exist or caller does not have permission to view the object*/
- ALTER TABLE dbo.GIBS_FBLineItems  ADD GIBS_FBLineItems Decimal(18,2)
- END
-
-
->>>>>>> .r312
 GO
 
 IF COL_LENGTH('GIBS_FBProducts','CaseWeight') IS NULL

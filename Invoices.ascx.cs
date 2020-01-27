@@ -10,12 +10,13 @@ using DotNetNuke.Entities.Modules.Actions;
 using DotNetNuke.Services.Exceptions;
 using DotNetNuke.Services.Localization;
 using GIBS.FBFoodInventory.Components;
-using GIBS.FBReports.Components;
+using DotNetNuke.Web.Client;
 using DotNetNuke.Common;
 using System.Drawing;
 using DotNetNuke.Common.Lists;
 using System.Data;
 using DotNetNuke.Framework.JavaScriptLibraries;
+using System.Linq;
 
 namespace GIBS.Modules.FBFoodInventory
 {
@@ -27,18 +28,21 @@ namespace GIBS.Modules.FBFoodInventory
         public DataTable dt;
         public DataTable dtSupplier;
         public DataTable dtProductCategories;
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            DotNetNuke.Framework.jQuery.RequestRegistration();
-            DotNetNuke.Framework.jQuery.RequestUIRegistration();
-            //JavaScript.RequestRegistration(CommonJs.jQuery);
-            //JavaScript.RequestRegistration(CommonJs.jQueryUI);
+
+            JavaScript.RequestRegistration(CommonJs.jQuery);
+            JavaScript.RequestRegistration(CommonJs.jQueryUI);
             Page.ClientScript.RegisterClientScriptInclude(this.GetType(), "InputMasks", (this.TemplateSourceDirectory + "/JavaScript/jquery.maskedinput-1.3.js"));
+            DotNetNuke.Web.Client.ClientResourceManagement.ClientResourceManager.RegisterStyleSheet(this.Page, this.TemplateSourceDirectory + "/Style.css");
+         //   Page.ClientScript.RegisterClientScriptInclude(this.GetType(), "CustomCSS", (this.TemplateSourceDirectory + "/Style.css"));
+         //    Page.ClientScript.RegisterClientScriptInclude(this.GetType(), "JQueryCSS", ("https://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/smoothness/jquery-ui.css"));
+
 
             if (!IsPostBack)
             {
-                FillProductCategoryDropDown();
+                FillDropDowns();
                 FillInvoiceGrid();
                 FillProductDropDown();
             }
@@ -88,7 +92,7 @@ namespace GIBS.Modules.FBFoodInventory
             {
                 Exceptions.ProcessModuleLoadException(this, ex);
             }
-            
+
 
         }
 
@@ -137,7 +141,7 @@ namespace GIBS.Modules.FBFoodInventory
                         panelEdit.Visible = true;
                         txtInvoiceNumber.Text = item.InvoiceNumber.ToString();
                         txtInvoiceDate.Text = item.InvoiceDate.ToShortDateString();
-
+                        ddlOrganization.SelectedValue = item.Organization.ToString();
                         ListItem lstitem = ddlSupplier.Items.FindByValue(item.SupplierID.ToString());
                         if (lstitem != null)
                         {
@@ -147,7 +151,7 @@ namespace GIBS.Modules.FBFoodInventory
                         {
                             AddInActiveSupplier(item.SupplierID);
                         }
-                        
+
 
                         txtInvoiceID.Value = item.InvoiceID.ToString();
                         //GroupIt();
@@ -171,7 +175,7 @@ namespace GIBS.Modules.FBFoodInventory
             {
                 Exceptions.ProcessModuleLoadException(this, ex);
             }
-                 
+
 
 
         }
@@ -189,13 +193,13 @@ namespace GIBS.Modules.FBFoodInventory
                 if (item != null)
                 {
                     ListItem lst = new ListItem(item.SupplierName.ToString(), SupplierID.ToString());
-                 
+
                     ddlSupplier.Items.Add(lst);
                     ddlSupplier.SelectedValue = SupplierID.ToString();
                 }
                 else
                 {
-                  //  txtSupplierID.Value = "";
+                    //  txtSupplierID.Value = "";
                 }
 
 
@@ -205,7 +209,7 @@ namespace GIBS.Modules.FBFoodInventory
                 Exceptions.ProcessModuleLoadException(this, ex);
             }
 
-        }				
+        }
 
         protected void gvInvoices_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
@@ -250,7 +254,7 @@ namespace GIBS.Modules.FBFoodInventory
 
 
 
-                
+
 
                 ddlSupplier.DataTextField = "SupplierName";
                 ddlSupplier.DataValueField = "SupplierID";
@@ -258,7 +262,7 @@ namespace GIBS.Modules.FBFoodInventory
                 ddlSupplier.DataBind();
 
                 ddlSupplier.Items.Insert(0, new ListItem("--Select--", "0"));
-                
+
 
             }
             catch (Exception ex)
@@ -274,6 +278,11 @@ namespace GIBS.Modules.FBFoodInventory
             try
             {
                 var ReportType = new ListController().GetListEntryInfoItems("InventoryReportingType", "", this.PortalId);
+                if(ReportType.ToList().Count == 0)
+                {
+                    CreateList();
+                    ReportType = new ListController().GetListEntryInfoItems("InventoryReportingType", "", this.PortalId);
+                }
 
                 ddlReportType.DataTextField = "Text";
                 ddlReportType.DataValueField = "Value";
@@ -291,6 +300,69 @@ namespace GIBS.Modules.FBFoodInventory
 
         }
 
+        public void CreateList()
+        {
+
+            try
+            {
+                //create a placeholder entry for Inventory Reporting Type
+                const string listName = "InventoryReportingType";
+                var listController = new ListController();
+                var entry = new ListEntryInfo();
+                {
+                    entry.DefinitionID = -1;
+                    entry.ParentID = 0;
+                    entry.Level = 0;
+                    entry.PortalID = this.PortalId;
+                    entry.ListName = listName;
+                    entry.Value = "USDA";
+                    entry.Text = "USDA";
+                    entry.SystemList = false;
+                    entry.SortOrder = 1;
+                }
+
+                listController.AddListEntry(entry);
+
+
+            }
+            catch (Exception ex)
+            {
+                Exceptions.ProcessModuleLoadException(this, ex);
+            }
+
+        }
+
+        public void CreateOrganizationList()
+        {
+
+            try
+            {
+                //create a placeholder entry - uses the most common 5 character password (seed list is 6 characters and above)
+                const string listName = "ClientOrganizations";
+                var listController = new ListController();
+                var entry = new ListEntryInfo();
+                {
+                    entry.DefinitionID = -1;
+                    entry.ParentID = 0;
+                    entry.Level = 0;
+                    entry.PortalID = this.PortalId;
+                    entry.ListName = listName;
+                    entry.Value = "Main Location";
+                    entry.Text = "Main Location";
+                    entry.SystemList = false;
+                    entry.SortOrder = 1;
+                }
+
+                listController.AddListEntry(entry);
+
+
+            }
+            catch (Exception ex)
+            {
+                Exceptions.ProcessModuleLoadException(this, ex);
+            }
+
+        }
 
         public void FillProductDropDown()
         {
@@ -330,7 +402,7 @@ namespace GIBS.Modules.FBFoodInventory
 
         }
 
-        public void FillProductCategoryDropDown()
+        public void FillDropDowns()
         {
 
             try
@@ -341,7 +413,6 @@ namespace GIBS.Modules.FBFoodInventory
                 FBFoodInventoryController controller = new FBFoodInventoryController();
 
                 items = controller.FBProductCategory_List(this.ModuleId);
-
 
                 dtProductCategories = Components.GridViewTools.ToDataTable(items);
 
@@ -355,6 +426,21 @@ namespace GIBS.Modules.FBFoodInventory
                 ddlFilterCategory.DataSource = dv;
                 ddlFilterCategory.DataBind();
                 ddlFilterCategory.Items.Insert(0, new ListItem("- Select Category -", "0"));
+
+
+                var Organizations = new ListController().GetListEntryInfoItems("ClientOrganizations", "", this.PortalId);
+
+                if (Organizations.ToList().Count == 0)
+                {
+                    CreateOrganizationList();
+                    Organizations = new ListController().GetListEntryInfoItems("ClientOrganizations", "", this.PortalId);
+                }
+
+                ddlOrganization.DataTextField = "Text";
+                ddlOrganization.DataValueField = "Text";
+                ddlOrganization.DataSource = Organizations;
+                ddlOrganization.DataBind();
+              //  ddlOrganization.Items.Insert(0, new ListItem("--Select--", ""));
 
             }
             catch (Exception ex)
@@ -380,7 +466,7 @@ namespace GIBS.Modules.FBFoodInventory
 
         }
 
-        protected void GridView1_RowCommand(object sender,  GridViewCommandEventArgs e)
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Delete")
             {
@@ -391,7 +477,7 @@ namespace GIBS.Modules.FBFoodInventory
 
                 FBFoodInventoryController controller = new FBFoodInventoryController();
                 controller.FBLineItems_Delete(ID);
-              //  DeleteRecordByID(ID);
+                //  DeleteRecordByID(ID);
                 // Implement this on your own :) 
 
             }
@@ -400,7 +486,7 @@ namespace GIBS.Modules.FBFoodInventory
             if (e.CommandName == "Edit")
             {
                 int ID = Convert.ToInt32(e.CommandArgument);
-                
+
                 FBFoodInventoryController controller = new FBFoodInventoryController();
                 FBFoodInventoryInfo item = controller.FBLineItems_GetByID(ID);
 
@@ -416,7 +502,7 @@ namespace GIBS.Modules.FBFoodInventory
                     {
                         ddlReportType.SelectedValue = item.ReportType.ToString();
                     }
-                    
+
 
                     btnAdd.Text = "Update Item";
 
@@ -426,10 +512,10 @@ namespace GIBS.Modules.FBFoodInventory
                     txtLineItemID_Edit.Value = "0";
                 }
 
-                
+
 
             }
-            
+
 
             GroupIt();
             GetLineItems(Int32.Parse(txtInvoiceID.Value.ToString()));
@@ -486,14 +572,14 @@ namespace GIBS.Modules.FBFoodInventory
 
                 GridViewLineItems.DataSource = items;
                 GridViewLineItems.DataBind();
-                
+
 
             }
             catch (Exception ex)
             {
                 Exceptions.ProcessModuleLoadException(this, ex);
             }
-        
+
         }
 
 
@@ -555,13 +641,13 @@ true, false);
 
                 item.SupplierID = Int32.Parse(ddlSupplier.SelectedValue.ToString());
 
-                item.InvoiceDate = DateTime.Parse(txtInvoiceDate.Text.ToString());
+                item.InvoiceDate = Convert.ToDateTime(txtInvoiceDate.Text.ToString());
 
-
+                item.Organization = ddlOrganization.SelectedValue.ToString();
 
                 item.LastModifiedByUserID = this.UserId;
 
-                
+
 
                 if (txtInvoiceID.Value.Length > 0)
                 {
@@ -570,12 +656,12 @@ true, false);
 
                     lblFormMessage.Text = Localization.GetString("InvoiceUpdateSuccessful", this.LocalResourceFile);
                     lblFormMessage.Visible = true;
-                    
+
                 }
                 else
                 {
                     item.CreatedByUserID = this.UserId;
-                 
+
 
                     int MyNewID = Null.NullInteger;
                     MyNewID = controller.FBInvoice_Insert(item);
@@ -612,7 +698,7 @@ true, false);
             try
             {
                 lblFormMessage.Visible = false;
-                
+
                 FBFoodInventoryController controller = new FBFoodInventoryController();
                 FBFoodInventoryInfo item = new FBFoodInventoryInfo();
 
@@ -658,7 +744,7 @@ true, false);
             {
                 Exceptions.ProcessModuleLoadException(this, ex);
             }
-            
+
         }
 
         public void GroupIt()
@@ -668,7 +754,7 @@ true, false);
             {
 
                 helper = new GridViewHelper(this.GridViewLineItems);
- 
+
                 helper.RegisterSummary("Cases", SummaryOperation.Sum);
                 helper.RegisterSummary("TotalWeightPerCase", SummaryOperation.Sum);
                 helper.RegisterSummary("TotalCostExtended", SummaryOperation.Sum);
@@ -736,7 +822,7 @@ true, false);
         {
             try
             {
-                
+
                 int productID = Int32.Parse(ddlProducts.SelectedValue.ToString());
 
                 FBFoodInventoryController controller = new FBFoodInventoryController();
@@ -774,7 +860,7 @@ true, false);
                 Exceptions.ProcessModuleLoadException(this, ex);
             }
         }
-        
+
 
 
 

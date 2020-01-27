@@ -11,7 +11,7 @@ using System.ComponentModel;
 
 namespace GIBS.FBFoodInventory.Components
 {
-    public class FBFoodInventoryController : ISearchable, IPortable
+    public class FBFoodInventoryController :  IPortable
     {
 
         #region public method
@@ -40,7 +40,8 @@ namespace GIBS.FBFoodInventory.Components
         /// <returns></returns>
         public FBFoodInventoryInfo FBSuppliers_GetByID(int moduleId, int supplierID)
         {
-            return (FBFoodInventoryInfo)CBO.FillObject(DataProvider.Instance().FBSuppliers_GetByID(moduleId, supplierID), typeof(FBFoodInventoryInfo));
+            //return (FBFoodInventoryInfo)CBO.FillObject(DataProvider.Instance().FBSuppliers_GetByID(moduleId, supplierID), typeof(FBFoodInventoryInfo));
+            return CBO.FillObject<FBFoodInventoryInfo>(DataProvider.Instance().FBSuppliers_GetByID(moduleId, supplierID));
         }
 
 
@@ -100,7 +101,8 @@ namespace GIBS.FBFoodInventory.Components
 
         public FBFoodInventoryInfo FBProductCategory_GetByID(int moduleId, int productCategoryID)
         {
-            return (FBFoodInventoryInfo)CBO.FillObject(DataProvider.Instance().FBProductCategory_GetByID(moduleId, productCategoryID), typeof(FBFoodInventoryInfo));
+           // return (FBFoodInventoryInfo)CBO.FillObject(DataProvider.Instance().FBProductCategory_GetByID(moduleId, productCategoryID), typeof(FBFoodInventoryInfo));
+            return CBO.FillObject<FBFoodInventoryInfo>(DataProvider.Instance().FBProductCategory_GetByID(moduleId, productCategoryID));
         }
 
         public void FBProductCategory_Update(FBFoodInventoryInfo info)
@@ -130,7 +132,8 @@ namespace GIBS.FBFoodInventory.Components
 
         public FBFoodInventoryInfo FBProducts_GetByID(int moduleId, int productID)
         {
-            return (FBFoodInventoryInfo)CBO.FillObject(DataProvider.Instance().FBProducts_GetByID(moduleId, productID), typeof(FBFoodInventoryInfo));
+         //   return (FBFoodInventoryInfo)CBO.FillObject(DataProvider.Instance().FBProducts_GetByID(moduleId, productID), typeof(FBFoodInventoryInfo));
+            return CBO.FillObject<FBFoodInventoryInfo>(DataProvider.Instance().FBProducts_GetByID(moduleId, productID));
         }
 
         public void FBProducts_Update(FBFoodInventoryInfo info)
@@ -164,7 +167,7 @@ namespace GIBS.FBFoodInventory.Components
             //check we have some content to store
             if (info.InvoiceNumber != string.Empty)
             {
-                return Convert.ToInt32(DataProvider.Instance().FBInvoice_Insert(info.InvoiceNumber, info.InvoiceDate, info.SupplierID, info.CreatedByUserID, info.ModuleId, info.PortalId));
+                return Convert.ToInt32(DataProvider.Instance().FBInvoice_Insert(info.InvoiceNumber, info.InvoiceDate, info.SupplierID, info.CreatedByUserID, info.ModuleId, info.PortalId, info.Organization));
             }
             else
             {
@@ -181,7 +184,8 @@ namespace GIBS.FBFoodInventory.Components
 
         public FBFoodInventoryInfo FBInvoice_GetByID(int moduleId, int invoiceID)
         {
-            return (FBFoodInventoryInfo)CBO.FillObject(DataProvider.Instance().FBInvoice_GetByID(moduleId, invoiceID), typeof(FBFoodInventoryInfo));
+        //    return (FBFoodInventoryInfo)CBO.FillObject(DataProvider.Instance().FBInvoice_GetByID(moduleId, invoiceID), typeof(FBFoodInventoryInfo));
+            return CBO.FillObject<FBFoodInventoryInfo>(DataProvider.Instance().FBInvoice_GetByID(moduleId, invoiceID));
         }
 
         public void FBInvoice_Update(FBFoodInventoryInfo info)
@@ -189,7 +193,7 @@ namespace GIBS.FBFoodInventory.Components
             //check we have some content to update
             if (info.InvoiceNumber != string.Empty)
             {
-                DataProvider.Instance().FBInvoice_Update(info.InvoiceID, info.InvoiceNumber, info.InvoiceDate, info.SupplierID, info.ModuleId, info.LastModifiedByUserID, info.PortalId);
+                DataProvider.Instance().FBInvoice_Update(info.InvoiceID, info.InvoiceNumber, info.InvoiceDate, info.SupplierID, info.ModuleId, info.LastModifiedByUserID, info.PortalId, info.Organization);
             }
         }
 
@@ -215,7 +219,8 @@ namespace GIBS.FBFoodInventory.Components
 
         public FBFoodInventoryInfo FBLineItems_GetByID(int lineItemID)
         {
-            return (FBFoodInventoryInfo)CBO.FillObject(DataProvider.Instance().FBLineItems_GetByID(lineItemID), typeof(FBFoodInventoryInfo));
+          //  return (FBFoodInventoryInfo)CBO.FillObject(DataProvider.Instance().FBLineItems_GetByID(lineItemID), typeof(FBFoodInventoryInfo));
+            return CBO.FillObject<FBFoodInventoryInfo>(DataProvider.Instance().FBLineItems_GetByID(lineItemID));
         }
 
         public void FBLineItems_Update(FBFoodInventoryInfo info)
@@ -233,38 +238,14 @@ namespace GIBS.FBFoodInventory.Components
         }
 
         // Reports
-        public List<FBFoodInventoryInfo> FBReports_Food_Inventory(DateTime startDate, DateTime endDate, int portalId)
-        {
-            return CBO.FillCollection<FBFoodInventoryInfo>(DataProvider.Instance().FBReports_Food_Inventory(startDate, endDate, portalId));
-        }
+        //public List<FBFoodInventoryInfo> FBReports_Food_Inventory(DateTime startDate, DateTime endDate, int portalId)
+        //{
+        //    return CBO.FillCollection<FBFoodInventoryInfo>(DataProvider.Instance().FBReports_Food_Inventory(startDate, endDate, portalId));
+        //}
 
         #endregion
 
-        #region ISearchable Members
-
-        /// <summary>
-        /// Implements the search interface required to allow DNN to index/search the content of your
-        /// module
-        /// </summary>
-        /// <param name="modInfo"></param>
-        /// <returns></returns>
-        public DotNetNuke.Services.Search.SearchItemInfoCollection GetSearchItems(ModuleInfo modInfo)
-        {
-            SearchItemInfoCollection searchItems = new SearchItemInfoCollection();
-
-            List<FBFoodInventoryInfo> infos = FBSuppliers_List(modInfo.ModuleID);
-
-            foreach (FBFoodInventoryInfo info in infos)
-            {
-                SearchItemInfo searchInfo = new SearchItemInfo(modInfo.ModuleTitle, info.SupplierName, info.CreatedByUserID, info.CreatedOnDate,
-                                                    modInfo.ModuleID, info.SupplierID.ToString(), info.SupplierName, "Item=" + info.SupplierID.ToString());
-                searchItems.Add(searchInfo);
-            }
-
-            return searchItems;
-        }
-
-        #endregion
+      
 
         #region IPortable Members
 

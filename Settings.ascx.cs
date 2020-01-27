@@ -6,7 +6,7 @@ using GIBS.FBFoodInventory.Components;
 
 namespace GIBS.Modules.FBFoodInventory
 {
-    public partial class Settings : ModuleSettingsBase
+    public partial class Settings : FBFoodInventorySettings
     {
 
         /// <summary>
@@ -19,12 +19,16 @@ namespace GIBS.Modules.FBFoodInventory
             {
                 if (!IsPostBack)
                 {
-                    FBFoodInventorySettings settingsData = new FBFoodInventorySettings(this.TabModuleId);
 
-                    if (settingsData.Template != null)
+                    if (Template != null)
                     {
-                        txtTemplate.Text = settingsData.Template;
+                        if (Template.ToString().Length > 0)
+                        {
+                            txtTemplate.Text = Template;
+                        }
                     }
+
+
                 }
             }
             catch (Exception ex)
@@ -40,8 +44,9 @@ namespace GIBS.Modules.FBFoodInventory
         {
             try
             {
-                FBFoodInventorySettings settingsData = new FBFoodInventorySettings(this.TabModuleId);
-                settingsData.Template = txtTemplate.Text;
+                var modules = new ModuleController();
+                modules.UpdateModuleSetting(ModuleId, "Template", txtTemplate.Text.ToString());
+
             }
             catch (Exception ex)
             {

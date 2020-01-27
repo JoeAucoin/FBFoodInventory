@@ -43,7 +43,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\bin\</OutputPath>
+    <OutputPath>..\..\..\bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -71,10 +71,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\bin\DotNetNuke.WebControls.dll</HintPath>
     </Reference>
-    <Reference Include="GIBS.Modules.FBReports, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\bin\GIBS.Modules.FBReports.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.ApplicationBlocks.Data, Version=2.0.0.0, Culture=neutral">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Microsoft.ApplicationBlocks.Data.dll</HintPath>
@@ -98,20 +94,21 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="Telerik.Web.UI, Version=2013.2.717.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\bin\Telerik.Web.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.Web.UI.Skins, Version=2013.2.717.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\bin\Telerik.Web.UI.Skins.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Components\DataProvider.cs" />
     <Compile Include="Components\FBFoodInventoryController.cs" />
     <Compile Include="Components\FBFoodInventoryInfo.cs" />
-    <Compile Include="Components\FBFoodInventorySettings.cs" />
+    <Compile Include="Components\FBFoodInventorySettings.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\GridViewExportUtil.cs" />
+    <Compile Include="Components\GridViewGroup.cs" />
+    <Compile Include="Components\GridViewGroupList.cs" />
+    <Compile Include="Components\GridViewHelper.cs" />
+    <Compile Include="Components\GridViewSummary.cs" />
+    <Compile Include="Components\GridViewSummaryList.cs" />
+    <Compile Include="Components\GridViewTools.cs" />
     <Compile Include="Components\SqlDataProvider.cs" />
     <Compile Include="EditFBFoodInventory.ascx.cs">
       <DependentUpon>EditFBFoodInventory.ascx</DependentUpon>
@@ -168,6 +165,8 @@
     <Content Include="BuildScripts\ModulePackage.targets" />
     <Content Include="BuildScripts\MSBuild.Community.Tasks.Targets" />
     <None Include="packages.config" />
+    <Content Include="JavaScript\jquery.maskedinput.js" />
+    <Content Include="README.md" />
     <None Include="SqlScripts\01.00.00.SqlDataProvider" />
     <None Include="SqlScripts\01.00.01.SqlDataProvider" />
     <None Include="SqlScripts\01.00.02.SqlDataProvider" />
@@ -180,6 +179,7 @@
     <None Include="SqlScripts\01.00.07.SqlDataProvider" />
     <None Include="SqlScripts\01.00.08.SqlDataProvider" />
     <None Include="SqlScripts\01.00.10.SqlDataProvider" />
+    <Content Include="SqlScripts\01.00.13.SqlDataProvider" />
     <None Include="Uninstall.SqlDataProvider" />
     <Content Include="EditFBFoodInventory.ascx" />
     <Content Include="Invoices.ascx" />
@@ -219,7 +219,9 @@
     <Content Include="App_LocalResources\Products.ascx.resx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_LocalResources\Invoices.ascx.resx" />
+    <Content Include="App_LocalResources\Invoices.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

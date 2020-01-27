@@ -19,7 +19,7 @@ namespace GIBS.FBFoodInventory.Components
         private string supplierPhone;
         private string salesman;
         private string salesmanPhone;
-        private int createdByUserID;      
+        private int createdByUserID;
         private DateTime createdOnDate;
         private int lastModifiedByUserID;
         private DateTime lastModifiedOnDate;
@@ -40,10 +40,12 @@ namespace GIBS.FBFoodInventory.Components
         private bool isActive;
 
         // Invoices
-       // InvoiceID, InvoiceNumber, InvoiceDate
+        // InvoiceID, InvoiceNumber, InvoiceDate
         private int invoiceID;
         private string invoiceNumber;
         private DateTime invoiceDate;
+
+        private string organization;
 
         //LineItems
         private int lineItemID;
@@ -158,7 +160,7 @@ namespace GIBS.FBFoodInventory.Components
         {
             get { return productCategory; }
             set { productCategory = value; }
-        }	
+        }
 
         //Products
         public double CasePrice
@@ -246,7 +248,14 @@ namespace GIBS.FBFoodInventory.Components
         {
             get { return invoiceDate; }
             set { invoiceDate = value; }
-        }	
+        }
+        // organization
+        public string Organization
+        {
+            get { return organization; }
+            set { organization = value; }
+        }
+
 
         //LineItems
         public int LineItemID
@@ -326,7 +335,15 @@ namespace GIBS.FBFoodInventory.Components
                     int portalId = PortalController.Instance.GetCurrentPortalSettings().PortalId;
                     UserController controller = new UserController();
                     UserInfo user = controller.GetUser(portalId, createdByUserID);
-                    createdByUserName = user.DisplayName;
+                    if(user != null)
+                    {
+                        createdByUserName = user.DisplayName;
+                    }
+                    else
+                    {
+                        createdByUserName = "Deleted User";
+                    }
+                    
                 }
                 return createdByUserName;
             }

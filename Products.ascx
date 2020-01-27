@@ -8,16 +8,16 @@
 <style type="text/css">
      .dnnFormItem.dnnFormHelp { margin-top: 2em; }
 </style>
-<script type="text/javascript" language="javascript" >
+<script type="text/javascript" lang="javascript" >
 
  //   jQuery(function ($) { $("#<%= ClientID %>_txtCasePrice").mask("999.99"); });
 
-   
+    
 </script>
 
 <asp:Panel runat="server" ID="panelGrid" Visible="True">
 
-
+<div>
  <asp:DropDownList ID="ddlFilterCategory" runat="server" AutoPostBack="True" 
         onselectedindexchanged="ddlFilterCategory_SelectedIndexChanged"></asp:DropDownList>
         
@@ -25,7 +25,9 @@
 
     <asp:CheckBox ID="cbxShowInActive" runat="server" Text=" &nbsp;Show Inactive Products" 
         AutoPostBack="True" oncheckedchanged="cbxShowInActive_CheckedChanged"  />
+</div>
 
+<div><asp:Label ID="lblDebug" runat="server" CssClass="lead" /></div>
 <asp:GridView ID="gvProducts" runat="server" 
      AllowPaging="True"
     PageSize="25"
@@ -93,7 +95,7 @@
 
 
 <div style="margin-top:15px;">
-<asp:Button runat="server" Text="Button" ID="btnAddNew" ResourceKey="btnAddNew" CssClass="dnnPrimaryAction" 
+<asp:Button runat="server" Text="Button" ID="btnAddNew" ResourceKey="btnAddNew" CssClass="btn btn-lg btn-primary" 
     onclick="btnAddNew_Click" /></div>
 
 
@@ -137,11 +139,12 @@
 		<div class="dnnFormItem">
             <dnn:Label runat="server" ID="lblProductCategory" ControlName="ddlProductCategory" ResourceKey="lblProductCategory" Suffix=":" />
             <asp:DropDownList ID="ddlProductCategory" runat="server"></asp:DropDownList>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" Display="Dynamic" ForeColor="Red" ValidationGroup="grAddProduct" ControlToValidate="ddlProductCategory" InitialValue="0" ErrorMessage="Required"></asp:RequiredFieldValidator>
         </div>
         <div class="dnnFormItem">
           <dnn:Label runat="server" ID="lblIsActive" ControlName="rblIsActive" ResourceKey="lblIsActive" Suffix=":" />
                 <asp:RadioButtonList ID="rblIsActive" runat="server" RepeatDirection="Horizontal">
-                <asp:ListItem Text="True" Value="True" />
+                <asp:ListItem Text="True" Value="True" Selected="True" />
                 <asp:ListItem Text="False" Value="False" />
                 </asp:RadioButtonList>
         </div>
@@ -151,12 +154,12 @@
     <asp:HiddenField ID="txtProductID" runat="server" />
 
     <ul class="dnnActions dnnClear">
-        <li><asp:LinkButton ID="btnSave" runat="server" CssClass="dnnPrimaryAction" 
+        <li><asp:LinkButton ID="btnSave" runat="server" CssClass="btn btn-primary" ValidationGroup="grAddProduct" 
                 ResourceKey="btnSave" onclick="btnSave_Click" /></li>
-        <li><asp:LinkButton ID="btnDelete" runat="server" CssClass="dnnSecondaryAction" CausesValidation="False" OnClientClick="return confirm('Are you sure you want to inactivate this product?');" 
+        <li><asp:LinkButton ID="btnDelete" runat="server" CssClass="btn btn-warning" CausesValidation="False" OnClientClick="return confirm('Are you sure you want to inactivate this product?');" 
                 ResourceKey="btnDelete" onclick="btnDelete_Click" /></li>
 
-        <li><asp:LinkButton ID="btnCancel" runat="server" CssClass="dnnSecondaryAction" CausesValidation="False" 
+        <li><asp:LinkButton ID="btnCancel" runat="server" CssClass="btn btn-default" CausesValidation="False" 
                 ResourceKey="btnCancel" onclick="btnCancel_Click" /></li>
     </ul>
 
@@ -166,5 +169,5 @@
 </asp:Panel>
 
 
-<div style="text-align:right"><asp:Button ID="btnReturnToFrontDesk" resourcekey="btnReturnToFrontDesk" CausesValidation="False" runat="server" CssClass="dnnSecondaryAction" 
+<div style="text-align:right"><asp:Button ID="btnReturnToFrontDesk" resourcekey="btnReturnToFrontDesk" CausesValidation="False" runat="server" CssClass="btn btn-default" 
                 Text="Return" onclick="btnReturnToFrontDesk_Click" /></div>

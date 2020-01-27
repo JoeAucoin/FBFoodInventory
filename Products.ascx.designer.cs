@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GIBS.Modules.FBFoodInventory {
-    
-    
-    public partial class Products {
-        
+namespace GIBS.Modules.FBFoodInventory
+{
+
+
+    public partial class Products
+    {
+
         /// <summary>
         /// panelGrid control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel panelGrid;
-        
+
         /// <summary>
         /// ddlFilterCategory control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlFilterCategory;
-        
+
         /// <summary>
         /// cbxShowInActive control.
         /// </summary>
@@ -38,7 +40,16 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbxShowInActive;
-        
+
+        /// <summary>
+        /// lblDebug control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDebug;
+
         /// <summary>
         /// gvProducts control.
         /// </summary>
@@ -47,7 +58,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvProducts;
-        
+
         /// <summary>
         /// lblTotalRecordCount control.
         /// </summary>
@@ -56,7 +67,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTotalRecordCount;
-        
+
         /// <summary>
         /// btnAddNew control.
         /// </summary>
@@ -65,7 +76,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddNew;
-        
+
         /// <summary>
         /// panelEdit control.
         /// </summary>
@@ -74,7 +85,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel panelEdit;
-        
+
         /// <summary>
         /// lblFormMessage control.
         /// </summary>
@@ -83,7 +94,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblFormMessage;
-        
+
         /// <summary>
         /// lblRequiredIndicator control.
         /// </summary>
@@ -92,7 +103,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblRequiredIndicator;
-        
+
         /// <summary>
         /// lblProductName control.
         /// </summary>
@@ -101,7 +112,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DotNetNuke.UI.UserControls.LabelControl lblProductName;
-        
+
         /// <summary>
         /// txtProductName control.
         /// </summary>
@@ -110,7 +121,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtProductName;
-        
+
         /// <summary>
         /// RequiredFieldValidator1 control.
         /// </summary>
@@ -119,7 +130,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-        
+
         /// <summary>
         /// lblCasePrice control.
         /// </summary>
@@ -128,7 +139,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DotNetNuke.UI.UserControls.LabelControl lblCasePrice;
-        
+
         /// <summary>
         /// txtCasePrice control.
         /// </summary>
@@ -137,7 +148,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCasePrice;
-        
+
         /// <summary>
         /// lblCaseCount control.
         /// </summary>
@@ -146,7 +157,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DotNetNuke.UI.UserControls.LabelControl lblCaseCount;
-        
+
         /// <summary>
         /// txtCaseCount control.
         /// </summary>
@@ -155,7 +166,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCaseCount;
-        
+
         /// <summary>
         /// lblCaseWeight control.
         /// </summary>
@@ -164,7 +175,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DotNetNuke.UI.UserControls.LabelControl lblCaseWeight;
-        
+
         /// <summary>
         /// txtCaseWeight control.
         /// </summary>
@@ -173,7 +184,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCaseWeight;
-        
+
         /// <summary>
         /// lblProductCategory control.
         /// </summary>
@@ -182,7 +193,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DotNetNuke.UI.UserControls.LabelControl lblProductCategory;
-        
+
         /// <summary>
         /// ddlProductCategory control.
         /// </summary>
@@ -191,7 +202,16 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlProductCategory;
-        
+
+        /// <summary>
+        /// RequiredFieldValidator2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+
         /// <summary>
         /// lblIsActive control.
         /// </summary>
@@ -200,7 +220,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DotNetNuke.UI.UserControls.LabelControl lblIsActive;
-        
+
         /// <summary>
         /// rblIsActive control.
         /// </summary>
@@ -209,7 +229,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList rblIsActive;
-        
+
         /// <summary>
         /// txtProductID control.
         /// </summary>
@@ -218,7 +238,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField txtProductID;
-        
+
         /// <summary>
         /// btnSave control.
         /// </summary>
@@ -227,7 +247,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnSave;
-        
+
         /// <summary>
         /// btnDelete control.
         /// </summary>
@@ -236,7 +256,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnDelete;
-        
+
         /// <summary>
         /// btnCancel control.
         /// </summary>
@@ -245,7 +265,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnCancel;
-        
+
         /// <summary>
         /// btnReturnToFrontDesk control.
         /// </summary>
