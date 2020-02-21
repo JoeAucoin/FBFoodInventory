@@ -84,7 +84,7 @@ namespace GIBS.FBFoodInventory.Components
         public abstract IDataReader FBLineItems_GetByID(int lineItemID);
 
         // Reports
-  //      public abstract IDataReader FBReports_Food_Inventory(DateTime startDate, DateTime endDate, int portalId);
+        public abstract IDataReader FBReports_Food_Inventory(DateTime startDate, DateTime endDate, int portalId);
 
         #endregion
 

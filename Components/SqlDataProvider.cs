@@ -221,10 +221,10 @@ namespace GIBS.FBFoodInventory.Components
         }
 
         // Reports
-        //public override IDataReader FBReports_Food_Inventory(DateTime startDate, DateTime endDate, int portalId)
-        //{
-        //    return (IDataReader)SqlHelper.ExecuteReader(connectionString, GetFullyQualifiedName("FBReports_Food_Inventory"), startDate, endDate, portalId);
-        //}
+        public override IDataReader FBReports_Food_Inventory(DateTime startDate, DateTime endDate, int portalId)
+        {
+            return (IDataReader)SqlHelper.ExecuteReader(connectionString, GetFullyQualifiedName("FBReports_Food_Inventory"), startDate, endDate, portalId);
+        }
 
         #endregion
     }

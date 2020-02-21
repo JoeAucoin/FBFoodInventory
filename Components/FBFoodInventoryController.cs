@@ -238,10 +238,10 @@ namespace GIBS.FBFoodInventory.Components
         }
 
         // Reports
-        //public List<FBFoodInventoryInfo> FBReports_Food_Inventory(DateTime startDate, DateTime endDate, int portalId)
-        //{
-        //    return CBO.FillCollection<FBFoodInventoryInfo>(DataProvider.Instance().FBReports_Food_Inventory(startDate, endDate, portalId));
-        //}
+        public List<FBFoodInventoryInfo> FBReports_Food_Inventory(DateTime startDate, DateTime endDate, int portalId)
+        {
+            return CBO.FillCollection<FBFoodInventoryInfo>(DataProvider.Instance().FBReports_Food_Inventory(startDate, endDate, portalId));
+        }
 
         #endregion
 
