@@ -193,6 +193,17 @@
                     <viewOrder>2</viewOrder>
                   </moduleControl>
                   <moduleControl>
+                    <controlKey>FoodReport</controlKey>
+                    <controlSrc>DesktopModules/GIBS/FBFoodInventory/FoodReport.ascx</controlSrc>
+                    <supportsPartialRendering>False</supportsPartialRendering>
+                    <controlTitle>Food Inventory Report</controlTitle>
+                    <controlType>View</controlType>
+                    <iconFile />
+                    <helpUrl />
+                    <supportsPopUps>False</supportsPopUps>
+                    <viewOrder>5</viewOrder>
+                  </moduleControl>
+                  <moduleControl>
                     <controlKey>Settings</controlKey>
                     <controlSrc>DesktopModules/GIBS/FBFoodInventory/Settings.ascx</controlSrc>
                     <supportsPartialRendering>False</supportsPartialRendering>

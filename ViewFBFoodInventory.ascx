@@ -12,6 +12,10 @@
 <div style="width: 100%; text-align: center; padding: 10px;">
 <asp:Button ID="btnSuppliers" resourcekey="btnSuppliers" runat="server" CssClass="btn btn-sm btn-default" Text="Suppliers" onclick="btnSuppliers_Click" />
  &nbsp;
-<asp:Button ID="btnProductCategories" runat="server" Text="ProductCategories" resourcekey="btnProductCategories" CssClass="btn btn-sm btn-default" onclick="btnProductCategories_Click" /></div>
+<asp:Button ID="btnProductCategories" runat="server" Text="ProductCategories" resourcekey="btnProductCategories" CssClass="btn btn-sm btn-default" onclick="btnProductCategories_Click" />
+
+<asp:Button ID="btnFoodReport" runat="server" Text="Report" resourcekey="btnFoodReport" CssClass="btn btn-sm btn-default" onclick="btnFoodReport_Click" />
+
+</div>
 
 

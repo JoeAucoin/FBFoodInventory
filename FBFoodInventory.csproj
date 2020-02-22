@@ -117,6 +117,13 @@
     <Compile Include="EditFBFoodInventory.ascx.designer.cs">
       <DependentUpon>EditFBFoodInventory.ascx</DependentUpon>
     </Compile>
+    <Compile Include="FoodReport.ascx.cs">
+      <DependentUpon>FoodReport.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FoodReport.ascx.designer.cs">
+      <DependentUpon>FoodReport.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Invoices.ascx.cs">
       <DependentUpon>Invoices.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -165,6 +172,7 @@
     <Content Include="BuildScripts\ModulePackage.targets" />
     <Content Include="BuildScripts\MSBuild.Community.Tasks.Targets" />
     <None Include="packages.config" />
+    <Content Include="FoodReport.ascx" />
     <Content Include="JavaScript\jquery.maskedinput.js" />
     <Content Include="README.md" />
     <None Include="SqlScripts\01.00.00.SqlDataProvider" />
@@ -225,6 +233,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="install\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\FoodReport.ascx.resx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

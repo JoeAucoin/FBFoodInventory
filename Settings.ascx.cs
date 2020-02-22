@@ -6,7 +6,7 @@ using GIBS.FBFoodInventory.Components;
 
 namespace GIBS.Modules.FBFoodInventory
 {
-    public partial class Settings : FBFoodInventorySettings
+    public partial class Settings : FBFoodInventorySettings 
     {
 
         /// <summary>
@@ -44,8 +44,8 @@ namespace GIBS.Modules.FBFoodInventory
         {
             try
             {
-                var modules = new ModuleController();
-                modules.UpdateModuleSetting(ModuleId, "Template", txtTemplate.Text.ToString());
+               
+                Template = txtTemplate.Text.ToString();
 
             }
             catch (Exception ex)

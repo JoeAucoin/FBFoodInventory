@@ -73,6 +73,13 @@ namespace GIBS.Modules.FBFoodInventory
         /// <param name="e"></param>
 
 
+        //<asp:Button ID="btnFoodReport" runat="server" Text="Report" resourcekey="btnFoodReport" CssClass="btn btn-sm btn-default" onclick="btnFoodReport_Click" />
+        protected void btnFoodReport_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(EditUrl("FoodReport"));
+        }
+
+
         protected void btnSuppliers_Click(object sender, EventArgs e)
         {
             Response.Redirect(EditUrl("Suppliers"));

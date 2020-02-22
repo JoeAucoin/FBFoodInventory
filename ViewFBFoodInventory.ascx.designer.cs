@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GIBS.Modules.FBFoodInventory {
-    
-    
-    public partial class ViewFBFoodInventory {
-        
+namespace GIBS.Modules.FBFoodInventory
+{
+
+
+    public partial class ViewFBFoodInventory
+    {
+
         /// <summary>
         /// btnInvoices control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnInvoices;
-        
+
         /// <summary>
         /// btnProducts control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnProducts;
-        
+
         /// <summary>
         /// btnSuppliers control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSuppliers;
-        
+
         /// <summary>
         /// btnProductCategories control.
         /// </summary>
@@ -47,5 +49,14 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnProductCategories;
+
+        /// <summary>
+        /// btnFoodReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnFoodReport;
     }
 }
