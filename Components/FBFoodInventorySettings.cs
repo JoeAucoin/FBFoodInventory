@@ -40,7 +40,21 @@ namespace GIBS.FBFoodInventory.Components
             }
         }
 
-
+        //GoogleTranslateAPIKey
+        public string GoogleTranslateAPIKey
+        {
+            get
+            {
+                if (Settings.Contains("GoogleTranslateAPIKey"))
+                    return Settings["GoogleTranslateAPIKey"].ToString();
+                return "";
+            }
+            set
+            {
+                var mc = new ModuleController();
+                mc.UpdateModuleSetting(ModuleId, "GoogleTranslateAPIKey", value.ToString());
+            }
+        }
 
         #endregion
     }

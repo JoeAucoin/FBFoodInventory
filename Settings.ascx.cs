@@ -27,7 +27,14 @@ namespace GIBS.Modules.FBFoodInventory
                             txtTemplate.Text = Template;
                         }
                     }
-
+                    //GoogleTranslateAPIKey
+                    if (GoogleTranslateAPIKey != null)
+                    {
+                        if (GoogleTranslateAPIKey.ToString().Length > 0)
+                        {
+                            txtGoogleTranslateAPIKey.Text = GoogleTranslateAPIKey;
+                        }
+                    }
 
                 }
             }
@@ -46,6 +53,7 @@ namespace GIBS.Modules.FBFoodInventory
             {
                
                 Template = txtTemplate.Text.ToString();
+                GoogleTranslateAPIKey = txtGoogleTranslateAPIKey.Text.ToString();
 
             }
             catch (Exception ex)

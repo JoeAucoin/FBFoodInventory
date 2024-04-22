@@ -1,0 +1,645 @@
+﻿IF COL_LENGTH('GIBS_FBProducts','Limit') IS NULL
+ BEGIN
+  /*COLUMN DOES NOT EXIST OR CALLER DOES NOT HAVE PERMISSION TO VIEW THE OBJECT*/
+ Alter TABLE [dbo].[GIBS_FBProducts]
+ADD Limit int DEFAULT 1
+ END
+GO
+
+Alter TABLE [dbo].[GIBS_FBProducts]
+ALTER column ProductName nvarchar(100)
+GO
+
+
+
+
+/****** Object:  Table [dbo].[GIBS_FBProductCategoryTranslate]    Script Date: 4/17/2024 1:12:57 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductCategoryTranslate]') AND type in (N'U'))
+BEGIN
+CREATE TABLE [dbo].[GIBS_FBProductCategoryTranslate](
+	[ProductCategoryID] [int] NOT NULL,
+	[LanguageCode] [nvarchar](2) NOT NULL,
+	[ProductCategory] [nvarchar](50) NOT NULL
+) ON [PRIMARY]
+END
+GO
+
+/****** Object:  Table [dbo].[GIBS_FBProductsTranslate]    Script Date: 4/17/2024 1:12:57 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductsTranslate]') AND type in (N'U'))
+BEGIN
+CREATE TABLE [dbo].[GIBS_FBProductsTranslate](
+	[ProductID] [int] NOT NULL,
+	[LanguageCode] [nvarchar](2) NOT NULL,
+	[ProductName] [nvarchar](100) NULL
+) ON [PRIMARY]
+END
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_GIBS_FBProductCategoryTranslate_GIBS_FBProductCategory]') AND parent_object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductCategoryTranslate]'))
+ALTER TABLE [dbo].[GIBS_FBProductCategoryTranslate]  WITH CHECK ADD  CONSTRAINT [FK_GIBS_FBProductCategoryTranslate_GIBS_FBProductCategory] FOREIGN KEY([ProductCategoryID])
+REFERENCES [dbo].[GIBS_FBProductCategory] ([ProductCategoryID])
+GO
+
+IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_GIBS_FBProductCategoryTranslate_GIBS_FBProductCategory]') AND parent_object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductCategoryTranslate]'))
+ALTER TABLE [dbo].[GIBS_FBProductCategoryTranslate] CHECK CONSTRAINT [FK_GIBS_FBProductCategoryTranslate_GIBS_FBProductCategory]
+GO
+
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_GIBS_FBProductsTranslate_GIBS_FBProducts]') AND parent_object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductsTranslate]'))
+ALTER TABLE [dbo].[GIBS_FBProductsTranslate]  WITH CHECK ADD  CONSTRAINT [FK_GIBS_FBProductsTranslate_GIBS_FBProducts] FOREIGN KEY([ProductID])
+REFERENCES [dbo].[GIBS_FBProducts] ([ProductID])
+GO
+
+IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[dbo].[FK_GIBS_FBProductsTranslate_GIBS_FBProducts]') AND parent_object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductsTranslate]'))
+ALTER TABLE [dbo].[GIBS_FBProductsTranslate] CHECK CONSTRAINT [FK_GIBS_FBProductsTranslate_GIBS_FBProducts]
+GO
+
+
+
+Alter TABLE [dbo].[GIBS_FBProductsTranslate]
+ALTER column ProductName nvarchar(101)
+GO
+
+
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductsTranslate_InsertUpdate]    Script Date: 4/17/2024 1:14:59 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductsTranslate_InsertUpdate]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProductsTranslate_InsertUpdate]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProducts_Update]    Script Date: 4/17/2024 1:14:59 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProducts_Update]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProducts_Update]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProducts_Translations]    Script Date: 4/17/2024 1:14:59 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProducts_Translations]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProducts_Translations]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProducts_List]    Script Date: 4/17/2024 1:14:59 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProducts_List]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProducts_List]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProducts_Insert]    Script Date: 4/17/2024 1:14:59 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProducts_Insert]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProducts_Insert]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProducts_GetByID]    Script Date: 4/17/2024 1:14:59 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProducts_GetByID]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProducts_GetByID]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProducts_Delete]    Script Date: 4/17/2024 1:14:59 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProducts_Delete]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProducts_Delete]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategoryTranslate_InsertUpdate]    Script Date: 4/17/2024 1:14:59 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductCategoryTranslate_InsertUpdate]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProductCategoryTranslate_InsertUpdate]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategory_Update]    Script Date: 4/17/2024 1:14:59 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductCategory_Update]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProductCategory_Update]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategory_Translations]    Script Date: 4/17/2024 1:14:59 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductCategory_Translations]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProductCategory_Translations]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategory_List]    Script Date: 4/17/2024 1:14:59 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductCategory_List]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProductCategory_List]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategory_GetByID]    Script Date: 4/17/2024 1:14:59 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductCategory_GetByID]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProductCategory_GetByID]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategories_Insert]    Script Date: 4/17/2024 1:14:59 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductCategories_Insert]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProductCategories_Insert]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategories_Insert]    Script Date: 4/17/2024 1:14:59 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[GIBS_FBProductCategories_Insert] 
+	@CreatedByUserID INT, 
+	@ModuleId INT, 
+	@ProductCategory NVARCHAR(50), 	
+	@PortalID INT,
+	@IsActive bit
+	 
+AS 
+BEGIN 
+	SET NOCOUNT ON;
+	
+
+insert into dbo.GIBS_FBProductCategory (
+	ProductCategory,
+	ModuleID,
+	CreatedOnDate,
+	CreatedByUserID,
+	lastModifiedByUserID,
+	LastModifiedOnDate,
+	PortalID,
+	isActive
+) 
+values (
+	@ProductCategory,
+	@ModuleId,
+	GETDATE(),
+	@CreatedByUserID,
+	@CreatedByUserID,
+	GETDATE(),
+	@PortalID,
+	@IsActive
+)
+	
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategory_GetByID]    Script Date: 4/17/2024 1:14:59 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[GIBS_FBProductCategory_GetByID]
+
+	@ModuleId int,
+	@ProductCategoryID int
+
+as
+
+SELECT     ProductCategoryID, ProductCategory,
+ ModuleID, 
+GIBS_FBProductCategory.CreatedOnDate, GIBS_FBProductCategory.CreatedByUserID, 
+GIBS_FBProductCategory.LastModifiedByUserID, GIBS_FBProductCategory.LastModifiedOnDate, PortalID,
+'CreatedByUserName' = Users.FirstName + ' ' + Users.LastName
+,isActive
+from GIBS_FBProductCategory
+left outer join Users on GIBS_FBProductCategory.CreatedByUserID = Users.UserId
+where  ModuleId = @ModuleId and ProductCategoryID = @ProductCategoryID
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategory_List]    Script Date: 4/17/2024 1:14:59 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[GIBS_FBProductCategory_List]
+
+	@ModuleId int
+
+as
+
+SELECT     
+ProductCategoryID, ProductCategory, ModuleID, GIBS_FBProductCategory.CreatedOnDate, 
+GIBS_FBProductCategory.CreatedByUserID, GIBS_FBProductCategory.LastModifiedByUserID, 
+GIBS_FBProductCategory.LastModifiedOnDate, 
+PortalID, 
+'CreatedByUserName' = Users.FirstName + ' ' + Users.LastName,
+LastMod.FirstName + ' ' + LastMod.LastName AS 'LastModifiedByUserName'
+,isActive
+from dbo.GIBS_FBProductCategory
+left outer join Users on GIBS_FBProductCategory.CreatedByUserID = Users.UserId 
+
+              LEFT OUTER JOIN
+             Users AS LastMod ON GIBS_FBProductCategory.LastModifiedByUserID = LastMod.UserID
+             
+where  ModuleId = @ModuleId order by ProductCategory
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategory_Translations]    Script Date: 4/17/2024 1:14:59 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE procedure [dbo].[GIBS_FBProductCategory_Translations]
+
+	@ProductCategoryID int
+
+as
+
+SELECT [ProductCategoryID]
+      ,[LanguageCode]
+      ,[ProductCategory]
+  FROM [dbo].[GIBS_FBProductCategoryTranslate]
+
+  WHERE [ProductCategoryID] = @ProductCategoryID
+ ORDER BY [LanguageCode]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategory_Update]    Script Date: 4/17/2024 1:14:59 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[GIBS_FBProductCategory_Update] 
+	@ProductCategoryID INT, 
+	@ModuleId INT, 
+	@ProductCategory NVARCHAR(50), 
+	@LastModifiedByUserID INT,
+	@PortalID INT,
+	@IsActive bit
+	 
+AS 
+BEGIN 
+	SET NOCOUNT ON;
+	
+	UPDATE dbo.GIBS_FBProductCategory
+		SET 
+		ProductCategory = @ProductCategory,
+		LastModifiedByUserID = @LastModifiedByUserID,
+		LastModifiedOnDate = GETDATE(),
+		PortalID = @PortalID,
+		IsActive = @IsActive
+		
+		WHERE  ModuleId = @ModuleId
+		and ProductCategoryID = @ProductCategoryID;
+	
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategoryTranslate_InsertUpdate]    Script Date: 4/17/2024 1:14:59 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+CREATE PROCEDURE [dbo].[GIBS_FBProductCategoryTranslate_InsertUpdate] 
+	
+	@ProductCategoryID int,		-- NVARCHAR(30),	
+	
+	@ProductCategory NVARCHAR(50),
+	@LanguageCode NVARCHAR(2)
+
+	 
+AS 
+BEGIN 
+	SET NOCOUNT ON;
+
+	--SELECT [ProductCategoryID]
+ --     ,[LanguageCode]
+ --     ,[ProductCategory]
+ -- FROM [dbo].[GIBS_Inventory_ProductCategoryTranslate]
+
+
+		if exists(select 1 from GIBS_FBProductCategoryTranslate where [ProductCategoryID] = @ProductCategoryID AND [LanguageCode] = @LanguageCode)
+			begin
+				--update  
+				UPDATE [dbo].[GIBS_FBProductCategoryTranslate]
+   SET [ProductCategory] = @ProductCategory
+ where [ProductCategoryID] = @ProductCategoryID AND [LanguageCode] = @LanguageCode
+
+
+			end
+		else
+			begin
+				--insert
+			INSERT INTO [dbo].[GIBS_FBProductCategoryTranslate]
+           ([ProductCategoryID]
+           ,[LanguageCode]
+           ,[ProductCategory])
+     VALUES
+           (@ProductCategoryID
+           ,@LanguageCode
+           ,@ProductCategory)
+				
+				
+			end	
+		
+			
+return
+
+
+	
+
+
+
+
+	
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProducts_Delete]    Script Date: 4/17/2024 1:14:59 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE procedure [dbo].[GIBS_FBProducts_Delete]
+
+	@ProductID INT
+
+as
+
+BEGIN
+
+UPDATE    GIBS_FBProducts
+SET              isActive = 0
+WHERE     (ProductID = @ProductID)
+
+
+
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProducts_GetByID]    Script Date: 4/17/2024 1:14:59 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure [dbo].[GIBS_FBProducts_GetByID]
+
+	@ModuleId int,
+	@ProductID int
+
+as
+
+BEGIN
+
+	SELECT     ProductID, ProductName, CasePrice, 
+	CaseCount, GIBS_FBProducts.ProductCategoryID, GIBS_FBProductCategory.ProductCategory,
+	 GIBS_FBProducts.ModuleID, CaseWeight, 
+	GIBS_FBProducts.CreatedOnDate, GIBS_FBProducts.CreatedByUserID, 
+	GIBS_FBProducts.LastModifiedByUserID, GIBS_FBProducts.LastModifiedOnDate, GIBS_FBProducts.PortalID,
+	'CreatedByUserName' = Users.FirstName + ' ' + Users.LastName,
+	GIBS_FBProducts.isActive, Limit
+	from GIBS_FBProducts 
+	INNER JOIN
+	GIBS_FBProductCategory ON GIBS_FBProducts.ProductCategoryID = GIBS_FBProductCategory.ProductCategoryID
+
+	left outer join Users on GIBS_FBProducts.CreatedByUserID = Users.UserId
+	where  GIBS_FBProducts.ModuleId = @ModuleId and GIBS_FBProducts.ProductID = @ProductID
+
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProducts_Insert]    Script Date: 4/17/2024 1:14:59 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[GIBS_FBProducts_Insert] 
+	
+	@ProductName NVARCHAR(50), 
+	@CasePrice money,
+	@CaseCount INT,
+	@ProductCategoryID INT,
+	@CreatedByUserID INT, 
+	@ModuleId INT, 
+	@PortalID INT,
+	@CaseWeight float,
+	@IsActive bit,
+	@Limit int
+	 
+AS 
+BEGIN 
+	SET NOCOUNT ON;
+	
+
+insert into dbo.GIBS_FBProducts (
+	ProductName,
+	CasePrice,
+	CaseCount,
+	ProductCategoryID,
+	ModuleID,
+	CreatedOnDate,
+	CreatedByUserID,
+	PortalID,
+	CaseWeight,
+	IsActive,
+	Limit
+) 
+values (
+	@ProductName,
+	@CasePrice,
+	@CaseCount,
+	@ProductCategoryID,
+	@ModuleId,
+	GETDATE(),
+	@CreatedByUserID,
+	@PortalID,
+	@CaseWeight,
+	@IsActive,
+	@Limit
+)
+
+select SCOPE_IDENTITY()
+	
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProducts_List]    Script Date: 4/17/2024 1:14:59 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure [dbo].[GIBS_FBProducts_List]
+
+	@ModuleId int
+
+as
+BEGIN 
+
+	SELECT     GIBS_FBProducts.ProductID, GIBS_FBProducts.ProductName, 
+	GIBS_FBProducts.CasePrice, GIBS_FBProducts.CaseCount, GIBS_FBProducts.CaseWeight,
+	GIBS_FBProducts.ProductCategoryID, GIBS_FBProductCategory.ProductCategory,GIBS_FBProducts.ProductCategoryID,
+	GIBS_FBProducts.ModuleID, GIBS_FBProducts.CreatedOnDate, 
+	GIBS_FBProducts.CreatedByUserID, GIBS_FBProducts.LastModifiedByUserID, 
+	GIBS_FBProducts.LastModifiedOnDate, GIBS_FBProducts.PortalID, 
+	Users.FirstName + ' ' + Users.LastName AS 'CreatedByUserName',
+	LastMod.FirstName + ' ' + LastMod.LastName AS 'LastModifiedByUserName',
+	GIBS_FBProducts.IsActive,
+	GIBS_FBProductCategory.ProductCategory + ' - ' + GIBS_FBProducts.ProductName AS ProductNameDropdown,
+	GIBS_FBProducts.Limit
+                      
+FROM         GIBS_FBProducts 
+			INNER JOIN
+            GIBS_FBProductCategory ON GIBS_FBProducts.ProductCategoryID = GIBS_FBProductCategory.ProductCategoryID
+              
+              LEFT OUTER JOIN
+             Users AS LastMod ON GIBS_FBProducts.LastModifiedByUserID = LastMod.UserID
+                      
+              LEFT OUTER JOIN
+             Users AS Users ON GIBS_FBProducts.CreatedByUserID = Users.UserID
+WHERE     (GIBS_FBProducts.ModuleID = @ModuleId)
+ORDER BY GIBS_FBProductCategory.ProductCategory, GIBS_FBProducts.ProductName
+
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProducts_Translations]    Script Date: 4/17/2024 1:14:59 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+CREATE procedure [dbo].[GIBS_FBProducts_Translations]
+
+	@ProductID int
+
+as
+
+SELECT [ProductID]
+      ,[LanguageCode]
+      ,[ProductName]
+  FROM [dbo].[GIBS_FBProductsTranslate]
+
+  WHERE [ProductID] = @ProductID
+ ORDER BY [LanguageCode]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProducts_Update]    Script Date: 4/17/2024 1:14:59 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[GIBS_FBProducts_Update] 
+	@ProductID INT,
+	@ProductName NVARCHAR(50), 
+	@CasePrice money,
+	@CaseCount INT,
+	@ProductCategoryID INT,
+	@ModuleId INT, 
+	@LastModifiedByUserID INT,
+	@PortalID INT,
+	@CaseWeight float,
+	@IsActive bit,
+	@Limit int
+	 
+AS 
+BEGIN 
+	SET NOCOUNT ON;
+	
+	UPDATE dbo.GIBS_FBProducts
+		SET 
+		ProductName = @ProductName,
+		CasePrice = @CasePrice,
+		CaseCount = @CaseCount,
+		ProductCategoryID = @ProductCategoryID,
+		LastModifiedByUserID = @LastModifiedByUserID,
+		LastModifiedOnDate = GETDATE(),
+		PortalID = @PortalID,
+		CaseWeight = @CaseWeight,
+		IsActive = @IsActive,
+		Limit = @Limit
+		
+		WHERE  ModuleId = @ModuleId
+		and ProductID = @ProductID;
+	
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductsTranslate_InsertUpdate]    Script Date: 4/17/2024 1:14:59 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+
+
+CREATE PROCEDURE [dbo].[GIBS_FBProductsTranslate_InsertUpdate] 
+	
+	@ProductID int,		-- NVARCHAR(30),	
+	
+	@ProductName NVARCHAR(50),
+	@LanguageCode NVARCHAR(2)
+
+	 
+AS 
+BEGIN 
+	SET NOCOUNT ON;
+
+
+
+
+		if exists(select 1 from GIBS_FBProductsTranslate where [ProductID] = @ProductID AND [LanguageCode] = @LanguageCode)
+			begin
+				--update  
+				UPDATE [dbo].[GIBS_FBProductsTranslate]
+   SET [ProductName] = @ProductName
+ where [ProductID] = @ProductID AND [LanguageCode] = @LanguageCode
+
+
+			end
+		else
+			begin
+				--insert
+			INSERT INTO [dbo].[GIBS_FBProductsTranslate]
+           ([ProductID]
+           ,[LanguageCode]
+           ,[ProductName])
+     VALUES
+           (@ProductID
+           ,@LanguageCode
+           ,@ProductName)
+				
+				
+			end	
+		
+			
+return
+
+	
+END
+GO
+
+

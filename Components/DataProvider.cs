@@ -53,10 +53,10 @@ namespace GIBS.FBFoodInventory.Components
         public abstract void DeleteFBFoodInventory(int moduleId, int itemId);
 
         // Products
-        public abstract void FBProducts_Insert(string productName, double casePrice, int caseCount, int productCategoryID, int createdByUserID, int moduleId, int portalId, double caseWeight, bool isActive);
+        public abstract void FBProducts_Insert(string productName, double casePrice, int caseCount, int productCategoryID, int createdByUserID, int moduleId, int portalId, double caseWeight, bool isActive, int limit);
         public abstract IDataReader FBProducts_List(int moduleId);
         public abstract IDataReader FBProducts_GetByID(int moduleId, int productID);
-        public abstract void FBProducts_Update(int productID, string productName, double casePrice, int caseCount, int productCategoryID, int moduleId, int lastModifiedByUserID, int portalId, double caseWeight, bool isActive);
+        public abstract void FBProducts_Update(int productID, string productName, double casePrice, int caseCount, int productCategoryID, int moduleId, int lastModifiedByUserID, int portalId, double caseWeight, bool isActive, int limit);
         public abstract void FBProducts_Delete(int productID);
         
         
@@ -65,6 +65,14 @@ namespace GIBS.FBFoodInventory.Components
         public abstract IDataReader FBProductCategory_List(int moduleId);
         public abstract IDataReader FBProductCategory_GetByID(int moduleId, int productCategoryID);
         public abstract void FBProductCategory_Update(int productCategoryID, int moduleId, string productCategory, int lastModifiedByUserID, int portalId, bool isActive);
+
+        public abstract IDataReader FBProductCategory_Translations(int productCategoryID);
+
+        public abstract void FBProductCategoryTranslate_InsertUpdate(int productCategoryID, string productCategory, string languageCode);
+
+        public abstract IDataReader FBProducts_Translations(int productID);
+
+        public abstract void FBProductsTranslate_InsertUpdate(int productID, string productName, string languageCode);
 
         //Invoices
         //public abstract void FBInvoice_Insert(string invoiceNumber, DateTime invoiceDate, int supplierID, int createdByUserID, int moduleId, int portalId);

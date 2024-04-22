@@ -28,6 +28,7 @@ namespace GIBS.FBFoodInventory.Components
         private int portalId;
 
         private string productCategory;
+        private string languageCode;
         private int productCategoryID;
 
         //Products
@@ -56,6 +57,7 @@ namespace GIBS.FBFoodInventory.Components
         private double totalCostExtended;
         private double totalWeightPerCase;
         private string reportType;
+        private int limit;
 
         // Reports
         private double totalProductWeight;
@@ -160,6 +162,12 @@ namespace GIBS.FBFoodInventory.Components
         {
             get { return productCategory; }
             set { productCategory = value; }
+        }
+
+        public string LanguageCode
+        {
+            get { return languageCode; }
+            set { languageCode = value; }
         }
 
         //Products
@@ -293,6 +301,12 @@ namespace GIBS.FBFoodInventory.Components
         {
             get { return reportType; }
             set { reportType = value; }
+        }
+
+        public int Limit
+        {
+            get { return limit; }
+            set { limit = value; }
         }
 
         // Common

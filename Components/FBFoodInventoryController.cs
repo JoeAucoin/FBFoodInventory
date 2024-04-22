@@ -40,7 +40,6 @@ namespace GIBS.FBFoodInventory.Components
         /// <returns></returns>
         public FBFoodInventoryInfo FBSuppliers_GetByID(int moduleId, int supplierID)
         {
-            //return (FBFoodInventoryInfo)CBO.FillObject(DataProvider.Instance().FBSuppliers_GetByID(moduleId, supplierID), typeof(FBFoodInventoryInfo));
             return CBO.FillObject<FBFoodInventoryInfo>(DataProvider.Instance().FBSuppliers_GetByID(moduleId, supplierID));
         }
 
@@ -99,6 +98,11 @@ namespace GIBS.FBFoodInventory.Components
             return CBO.FillCollection<FBFoodInventoryInfo>(DataProvider.Instance().FBProductCategory_List(moduleId));
         }
 
+        public List<FBFoodInventoryInfo> FBProductCategory_Translations(int productCategoryID)
+        {
+            return CBO.FillCollection<FBFoodInventoryInfo>(DataProvider.Instance().FBProductCategory_Translations(productCategoryID));
+        }
+
         public FBFoodInventoryInfo FBProductCategory_GetByID(int moduleId, int productCategoryID)
         {
            // return (FBFoodInventoryInfo)CBO.FillObject(DataProvider.Instance().FBProductCategory_GetByID(moduleId, productCategoryID), typeof(FBFoodInventoryInfo));
@@ -114,6 +118,30 @@ namespace GIBS.FBFoodInventory.Components
             }
         }
 
+        public void FBProductCategoryTranslate_InsertUpdate(FBFoodInventoryInfo info)
+        {
+            //check we have some content to store
+            if (info.ProductCategory != string.Empty)
+            {
+                DataProvider.Instance().FBProductCategoryTranslate_InsertUpdate(info.ProductCategoryID,  info.ProductCategory, info.LanguageCode);
+            }
+        }
+
+        public void FBProductsTranslate_InsertUpdate(FBFoodInventoryInfo info)
+        {
+            //check we have some content to store
+            if (info.ProductName != string.Empty)
+            {
+                DataProvider.Instance().FBProductsTranslate_InsertUpdate(info.ProductID, info.ProductName, info.LanguageCode);
+            }
+        }
+
+        public List<FBFoodInventoryInfo> FBProducts_Translations(int productID)
+        {
+            return CBO.FillCollection<FBFoodInventoryInfo>(DataProvider.Instance().FBProducts_Translations(productID));
+        }
+
+        //int productCategoryID, string productCategory, string languageCode
 
         // Products
         public void FBProducts_Insert(FBFoodInventoryInfo info)
@@ -121,7 +149,7 @@ namespace GIBS.FBFoodInventory.Components
             //check we have some content to store
             if (info.ProductName != string.Empty)
             {
-                DataProvider.Instance().FBProducts_Insert(info.ProductName, info.CasePrice, info.CaseCount, info.ProductCategoryID, info.CreatedByUserID, info.ModuleId, info.PortalId, info.CaseWeight, info.IsActive);
+                DataProvider.Instance().FBProducts_Insert(info.ProductName, info.CasePrice, info.CaseCount, info.ProductCategoryID, info.CreatedByUserID, info.ModuleId, info.PortalId, info.CaseWeight, info.IsActive, info.Limit);
             }
         }
 
@@ -141,7 +169,7 @@ namespace GIBS.FBFoodInventory.Components
             //check we have some content to update
             if (info.ProductCategory != string.Empty)
             {
-                DataProvider.Instance().FBProducts_Update(info.ProductID, info.ProductName, info.CasePrice, info.CaseCount, info.ProductCategoryID, info.ModuleId, info.LastModifiedByUserID, info.PortalId, info.CaseWeight, info.IsActive);
+                DataProvider.Instance().FBProducts_Update(info.ProductID, info.ProductName, info.CasePrice, info.CaseCount, info.ProductCategoryID, info.ModuleId, info.LastModifiedByUserID, info.PortalId, info.CaseWeight, info.IsActive, info.Limit);
             }
         }
 

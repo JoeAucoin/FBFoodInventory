@@ -168,4 +168,19 @@
   <data name="errorAddCategoriesFirst.Text" xml:space="preserve">
     <value>You need to add categories before you can add any products.</value>
   </data>
+  <data name="btnCancelTranslation.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="btnSaveTranslation.Text" xml:space="preserve">
+    <value>Save Translation</value>
+  </data>
+  <data name="lblAddLanguage.Text" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="lblLimit.Text" xml:space="preserve">
+    <value>Limit Quantity</value>
+  </data>
+  <data name="lblTranslation.Text" xml:space="preserve">
+    <value>Translation</value>
+  </data>
 </root>

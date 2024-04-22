@@ -12,7 +12,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GIBS.Modules.FBFoodInventory</RootNamespace>
     <AssemblyName>GIBS.Modules.FBFoodInventory</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>4.0</OldToolsVersion>
@@ -188,7 +188,6 @@
     <None Include="SqlScripts\01.00.08.SqlDataProvider" />
     <None Include="SqlScripts\01.00.10.SqlDataProvider" />
     <Content Include="SqlScripts\01.00.13.SqlDataProvider" />
-    <Content Include="SqlScripts\01.00.15.SqlDataProvider" />
     <None Include="Uninstall.SqlDataProvider" />
     <Content Include="EditFBFoodInventory.ascx" />
     <Content Include="Invoices.ascx" />
@@ -260,7 +259,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>1193</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://dnn9.com/DesktopModules/GIBS/FBFoodInventory</IISUrl>
+          <IISUrl>http://dnn7.com/DesktopModules/GIBS/FBFoodInventory</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

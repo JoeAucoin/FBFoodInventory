@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GIBS.Modules.FBFoodInventory {
-    
-    
-    public partial class ProductCategories {
-        
+namespace GIBS.Modules.FBFoodInventory
+{
+
+
+    public partial class ProductCategories
+    {
+
         /// <summary>
         /// panelGrid control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel panelGrid;
-        
+
         /// <summary>
         /// cbxShowInActive control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox cbxShowInActive;
-        
+
         /// <summary>
         /// gvProductCategory control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvProductCategory;
-        
+
         /// <summary>
         /// lblTotalRecordCount control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTotalRecordCount;
-        
+
         /// <summary>
         /// btnAddNew control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAddNew;
-        
+
         /// <summary>
         /// panelEdit control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel panelEdit;
-        
+
         /// <summary>
         /// lblFormMessage control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblFormMessage;
-        
+
         /// <summary>
         /// lblRequiredIndicator control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblRequiredIndicator;
-        
+
         /// <summary>
         /// lblProductCategory control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DotNetNuke.UI.UserControls.LabelControl lblProductCategory;
-        
+
         /// <summary>
         /// txtProductCategory control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtProductCategory;
-        
+
         /// <summary>
         /// RequiredFieldValidator1 control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-        
+
         /// <summary>
         /// lblIsActive control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::DotNetNuke.UI.UserControls.LabelControl lblIsActive;
-        
+
         /// <summary>
         /// rblIsActive control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList rblIsActive;
-        
+
         /// <summary>
         /// txtProductCategoryID control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField txtProductCategoryID;
-        
+
         /// <summary>
         /// btnSave control.
         /// </summary>
@@ -146,7 +148,7 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnSave;
-        
+
         /// <summary>
         /// btnCancel control.
         /// </summary>
@@ -155,7 +157,70 @@ namespace GIBS.Modules.FBFoodInventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnCancel;
-        
+
+        /// <summary>
+        /// lblAddLanguage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblAddLanguage;
+
+        /// <summary>
+        /// ddlLanguage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLanguage;
+
+        /// <summary>
+        /// lblTranslation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblTranslation;
+
+        /// <summary>
+        /// txtTranslation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTranslation;
+
+        /// <summary>
+        /// btnSaveTranslation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnSaveTranslation;
+
+        /// <summary>
+        /// btnCancelTranslation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnCancelTranslation;
+
+        /// <summary>
+        /// gvLanguages control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvLanguages;
+
         /// <summary>
         /// btnReturnToFrontDesk control.
         /// </summary>

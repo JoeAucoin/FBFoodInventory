@@ -87,7 +87,7 @@
     <fieldset>
 
         <div class="dnnFormItem">
-           <dnn:Label runat="server" ID="lblProductCategory" ControlName="txtProductCategory" ResourceKey="lblProductCategory" />
+           <dnn:Label runat="server" ID="lblProductCategory" ControlName="txtProductCategory" ResourceKey="lblProductCategory" Suffix=":" />
             <asp:TextBox runat="server" ID="txtProductCategory" CssClass="dnnFormRequired" Width="200px" />
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtProductCategory" 
                 CssClass="dnnFormMessage dnnFormError" ResourceKey="ProductCategory.Required" />
@@ -110,7 +110,60 @@
         <li><asp:LinkButton ID="btnCancel" runat="server" CssClass="dnnSecondaryAction" CausesValidation="False" 
         ResourceKey="btnCancel" onclick="btnCancel_Click" /></li>
     </ul>
+<!--  <h2>Translations</h2> -->
+    <fieldset>
+
+        <div class="dnnFormItem">
+             <dnn:Label runat="server" ID="lblAddLanguage" ControlName="ddlLanguage" ResourceKey="lblAddLanguage" Visible="false" Suffix=":" />
+				 <asp:DropDownList ID="ddlLanguage" runat="server" Visible="false" ></asp:DropDownList>
+            </div>
+
+        <div class="dnnFormItem">
+            <dnn:Label runat="server" ID="lblTranslation" ControlName="txtTranslation" Visible="false" ResourceKey="lblTranslation" Suffix=":" />
+            <asp:TextBox ID="txtTranslation" Visible="false" runat="server"></asp:TextBox>
+        </div>
+        </fieldset>
+
+        <ul class="dnnActions dnnClear" style="float:right;">
+        <li><asp:LinkButton ID="btnSaveTranslation" runat="server" CssClass="dnnPrimaryAction" Visible="false" 
+                ResourceKey="btnSaveTranslation" OnClick="btnSaveTranslation_Click" /></li>
+        <li><asp:LinkButton ID="btnCancelTranslation" runat="server" CssClass="dnnSecondaryAction" CausesValidation="False" Visible="false" 
+        ResourceKey="btnCancelTranslation" OnClick="btnCancelTranslation_Click"/></li>
+    </ul>
+
+    	<asp:GridView ID="gvLanguages" runat="server" Visible="false" 
+    DataKeyNames="ProductCategoryID" OnRowEditing="gvLanguages_RowEditing" 
+    
+    AutoGenerateColumns="False" 
+    GridLines="Horizontal" 
+     CssClass="dnnGrid"
+    resourcekey="gvLanguages">
+
+    <AlternatingRowStyle cssclass="dnnGridAltItem" />
+    <FooterStyle cssclass="dnnGridFooter" />
+    <HeaderStyle cssclass="dnnGridHeader" />
+   
+    <RowStyle cssclass="dnnGridItem" />
+   
+    <Columns>
+               
+        <asp:TemplateField HeaderText="" ItemStyle-VerticalAlign="Top" ItemStyle-Width="28px" ItemStyle-HorizontalAlign="Center">
+         <ItemTemplate>
+           <asp:LinkButton ID="LinkButtonEdit" CausesValidation="False"     
+             CommandArgument='<%# Eval("ProductCategoryID") %>' 
+             CommandName="Edit" runat="server"><asp:image ID="imgEdit" runat="server" imageurl="~/images/edit.gif" AlternateText="Edit Record" /></asp:LinkButton>
+         </ItemTemplate>
+       </asp:TemplateField>
+
+        <asp:BoundField HeaderText="Language" DataField="LanguageCode" ItemStyle-Font-Bold="True"></asp:BoundField>
+         <asp:BoundField HeaderText="Translation" DataField="ProductCategory" Visible="True"></asp:BoundField>
+
+    </Columns>
+</asp:GridView>	
+
+
 </asp:Panel>
+
 
 
 <div style="text-align:right"><asp:Button ID="btnReturnToFrontDesk" CausesValidation="False" resourcekey="btnReturnToFrontDesk" runat="server" CssClass="dnnSecondaryAction" 

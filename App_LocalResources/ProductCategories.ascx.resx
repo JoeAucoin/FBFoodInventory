@@ -150,4 +150,16 @@
   <data name="Suppliers.Text" xml:space="preserve">
     <value>Manage Suppliers</value>
   </data>
+  <data name="btnCancelTranslation.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="btnSaveTranslation.Text" xml:space="preserve">
+    <value>Save Translation</value>
+  </data>
+  <data name="lblAddLanguage.Text" xml:space="preserve">
+    <value>Add Language</value>
+  </data>
+  <data name="lblTranslation.Text" xml:space="preserve">
+    <value>Translation</value>
+  </data>
 </root>

@@ -17,7 +17,7 @@ using System.Data;
 using System.ComponentModel;
 using DotNetNuke.Framework.JavaScriptLibraries;
 using GIBS.FBFoodInventory.Components;
-
+using DotNetNuke.Common.Lists;
 
 namespace GIBS.Modules.FBFoodInventory
 {
@@ -188,6 +188,15 @@ namespace GIBS.Modules.FBFoodInventory
                 ddlFilterCategory.DataBind();
                 ddlFilterCategory.Items.Insert(0, new ListItem("Filter Category", "0"));
 
+                //// FILL LANGUAGE DROPDOWN
+                //var cLanguage = new ListController().GetListEntryInfoItems("ClientLanguage", "", this.PortalId);
+
+                //ddlLanguage.DataTextField = "Text";
+                //ddlLanguage.DataValueField = "Value";
+                //ddlLanguage.DataSource = cLanguage;
+                //ddlLanguage.DataBind();
+                //ddlLanguage.Items.Insert(0, new ListItem("--", ""));
+
             }
             catch (Exception ex)
             {
@@ -244,6 +253,12 @@ namespace GIBS.Modules.FBFoodInventory
                         txtCaseWeight.Text = item.CaseWeight.ToString();
                         rblIsActive.SelectedValue = item.IsActive.ToString();
                         txtProductID.Value = item.ProductID.ToString();
+                        if(item.Limit > 0)
+                        {
+                            ddlLimit.SelectedValue = item.Limit.ToString();
+                        }
+                        
+                     //   FillTranslationsGrid();
                     }
                     else
                     {
@@ -310,7 +325,7 @@ namespace GIBS.Modules.FBFoodInventory
 
                 item.LastModifiedByUserID = this.UserId;
                 item.IsActive = bool.Parse(rblIsActive.SelectedValue.ToString());
-
+                item.Limit = Int32.Parse(ddlLimit.SelectedValue.ToString());
 
                 if (txtProductID.Value.Length > 0)
                 {
@@ -454,6 +469,70 @@ namespace GIBS.Modules.FBFoodInventory
             FillProductsGrid();
         }
 
+        protected void gvLanguages_RowEditing(object sender, GridViewEditEventArgs e)
+        {
 
+        }
+
+        public void FillTranslationsGrid()
+        {
+
+            try
+            {
+
+                List<FBFoodInventoryInfo> items;
+                FBFoodInventoryController controller = new FBFoodInventoryController();
+                items = controller.FBProducts_Translations(Int32.Parse(txtProductID.Value.ToString()));
+
+
+                gvLanguages.DataSource = items;
+                gvLanguages.DataBind();
+
+
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Exceptions.ProcessModuleLoadException(this, ex);
+            }
+
+        }
+
+        protected void btnSaveTranslation_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FBFoodInventoryController controller = new FBFoodInventoryController();
+                FBFoodInventoryInfo item = new FBFoodInventoryInfo();
+
+
+                item.ProductID = Int32.Parse(txtProductID.Value.ToString());
+                item.ProductName = txtTranslation.Text.ToString();
+
+                item.LanguageCode = ddlLanguage.SelectedValue.ToString();
+                controller.FBProductsTranslate_InsertUpdate(item);
+
+
+                FillTranslationsGrid();
+                ddlLanguage.SelectedIndex = 0;
+                txtTranslation.Text = string.Empty;
+
+                // Response.Redirect(EditUrl("ProductCategories"));
+
+            }
+            catch (Exception ex)
+            {
+                Exceptions.ProcessModuleLoadException(this, ex);
+
+            }
+
+        }
+
+        protected void btnCancelTranslation_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

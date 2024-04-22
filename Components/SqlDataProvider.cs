@@ -116,11 +116,31 @@ namespace GIBS.FBFoodInventory.Components
             SqlHelper.ExecuteNonQuery(connectionString, GetFullyQualifiedName("DeleteFBFoodInventory"), moduleId, itemId);
         }
 
-
+        
         //ProductCategory
         public override IDataReader FBProductCategory_List(int moduleId)
         {
             return (IDataReader)SqlHelper.ExecuteReader(connectionString, GetFullyQualifiedName("FBProductCategory_List"), moduleId);
+        }
+
+        public override IDataReader FBProductCategory_Translations(int productCategoryID)
+        {
+            return (IDataReader)SqlHelper.ExecuteReader(connectionString, GetFullyQualifiedName("FBProductCategory_Translations"), productCategoryID);
+        }
+        // //int productCategoryID, string productCategory, string languageCode
+        public override void FBProductCategoryTranslate_InsertUpdate(int productCategoryID, string productCategory, string languageCode)
+        {
+            SqlHelper.ExecuteNonQuery(connectionString, GetFullyQualifiedName("FBProductCategoryTranslate_InsertUpdate"), productCategoryID, productCategory, languageCode);
+        }
+
+        public override IDataReader FBProducts_Translations(int productID)
+        {
+            return (IDataReader)SqlHelper.ExecuteReader(connectionString, GetFullyQualifiedName("FBProducts_Translations"), productID);
+        }
+        // //int productCategoryID, string productCategory, string languageCode
+        public override void FBProductsTranslate_InsertUpdate(int productID, string productName, string languageCode)
+        {
+            SqlHelper.ExecuteNonQuery(connectionString, GetFullyQualifiedName("FBProductsTranslate_InsertUpdate"), productID, productName, languageCode);
         }
 
         public override void FBProductCategories_Insert(int createdByUserID, int moduleId, string productCategory, int portalId, bool isActive)
@@ -144,9 +164,9 @@ namespace GIBS.FBFoodInventory.Components
             return (IDataReader)SqlHelper.ExecuteReader(connectionString, GetFullyQualifiedName("FBProducts_List"), moduleId);
         }
 
-        public override void FBProducts_Insert(string productName, double casePrice, int caseCount, int productCategoryID, int createdByUserID, int moduleId, int portalId, double caseWeight, bool isActive)
+        public override void FBProducts_Insert(string productName, double casePrice, int caseCount, int productCategoryID, int createdByUserID, int moduleId, int portalId, double caseWeight, bool isActive, int limit)
         {
-            SqlHelper.ExecuteNonQuery(connectionString, GetFullyQualifiedName("FBProducts_Insert"), productName, casePrice, caseCount, productCategoryID, createdByUserID, moduleId, portalId, caseWeight, isActive);
+            SqlHelper.ExecuteNonQuery(connectionString, GetFullyQualifiedName("FBProducts_Insert"), productName, casePrice, caseCount, productCategoryID, createdByUserID, moduleId, portalId, caseWeight, isActive, limit);
         }
 
         public override IDataReader FBProducts_GetByID(int moduleId, int itemId)
@@ -154,9 +174,9 @@ namespace GIBS.FBFoodInventory.Components
             return (IDataReader)SqlHelper.ExecuteReader(connectionString, GetFullyQualifiedName("FBProducts_GetByID"), moduleId, itemId);
         }
 
-        public override void FBProducts_Update(int productID, string productName, double casePrice, int caseCount, int productCategoryID, int moduleId, int lastModifiedByUserID, int portalId, double caseWeight, bool isActive)
+        public override void FBProducts_Update(int productID, string productName, double casePrice, int caseCount, int productCategoryID, int moduleId, int lastModifiedByUserID, int portalId, double caseWeight, bool isActive, int limit)
         {
-            SqlHelper.ExecuteNonQuery(connectionString, GetFullyQualifiedName("FBProducts_Update"), productID, productName, casePrice, caseCount, productCategoryID, moduleId, lastModifiedByUserID, portalId, caseWeight, isActive);
+            SqlHelper.ExecuteNonQuery(connectionString, GetFullyQualifiedName("FBProducts_Update"), productID, productName, casePrice, caseCount, productCategoryID, moduleId, lastModifiedByUserID, portalId, caseWeight, isActive, limit);
         }
 
         public override void FBProducts_Delete(int productID)
