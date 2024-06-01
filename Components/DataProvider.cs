@@ -53,10 +53,10 @@ namespace GIBS.FBFoodInventory.Components
         public abstract void DeleteFBFoodInventory(int moduleId, int itemId);
 
         // Products
-        public abstract void FBProducts_Insert(string productName, double casePrice, int caseCount, int productCategoryID, int createdByUserID, int moduleId, int portalId, double caseWeight, bool isActive, int limit);
+        public abstract void FBProducts_Insert(string productName, double casePrice, int caseCount, int productCategoryID, int createdByUserID, int moduleId, int portalId, double caseWeight, bool isActive, int limit, string limitQuantities);
         public abstract IDataReader FBProducts_List(int moduleId);
         public abstract IDataReader FBProducts_GetByID(int moduleId, int productID);
-        public abstract void FBProducts_Update(int productID, string productName, double casePrice, int caseCount, int productCategoryID, int moduleId, int lastModifiedByUserID, int portalId, double caseWeight, bool isActive, int limit);
+        public abstract void FBProducts_Update(int productID, string productName, double casePrice, int caseCount, int productCategoryID, int moduleId, int lastModifiedByUserID, int portalId, double caseWeight, bool isActive, int limit, string limitQuantities);
         public abstract void FBProducts_Delete(int productID);
         
         

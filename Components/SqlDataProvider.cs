@@ -164,9 +164,9 @@ namespace GIBS.FBFoodInventory.Components
             return (IDataReader)SqlHelper.ExecuteReader(connectionString, GetFullyQualifiedName("FBProducts_List"), moduleId);
         }
 
-        public override void FBProducts_Insert(string productName, double casePrice, int caseCount, int productCategoryID, int createdByUserID, int moduleId, int portalId, double caseWeight, bool isActive, int limit)
+        public override void FBProducts_Insert(string productName, double casePrice, int caseCount, int productCategoryID, int createdByUserID, int moduleId, int portalId, double caseWeight, bool isActive, int limit, string limitQuantities)
         {
-            SqlHelper.ExecuteNonQuery(connectionString, GetFullyQualifiedName("FBProducts_Insert"), productName, casePrice, caseCount, productCategoryID, createdByUserID, moduleId, portalId, caseWeight, isActive, limit);
+            SqlHelper.ExecuteNonQuery(connectionString, GetFullyQualifiedName("FBProducts_Insert"), productName, casePrice, caseCount, productCategoryID, createdByUserID, moduleId, portalId, caseWeight, isActive, limit, limitQuantities);
         }
 
         public override IDataReader FBProducts_GetByID(int moduleId, int itemId)
@@ -174,9 +174,9 @@ namespace GIBS.FBFoodInventory.Components
             return (IDataReader)SqlHelper.ExecuteReader(connectionString, GetFullyQualifiedName("FBProducts_GetByID"), moduleId, itemId);
         }
 
-        public override void FBProducts_Update(int productID, string productName, double casePrice, int caseCount, int productCategoryID, int moduleId, int lastModifiedByUserID, int portalId, double caseWeight, bool isActive, int limit)
+        public override void FBProducts_Update(int productID, string productName, double casePrice, int caseCount, int productCategoryID, int moduleId, int lastModifiedByUserID, int portalId, double caseWeight, bool isActive, int limit, string limitQuantities)
         {
-            SqlHelper.ExecuteNonQuery(connectionString, GetFullyQualifiedName("FBProducts_Update"), productID, productName, casePrice, caseCount, productCategoryID, moduleId, lastModifiedByUserID, portalId, caseWeight, isActive, limit);
+            SqlHelper.ExecuteNonQuery(connectionString, GetFullyQualifiedName("FBProducts_Update"), productID, productName, casePrice, caseCount, productCategoryID, moduleId, lastModifiedByUserID, portalId, caseWeight, isActive, limit, limitQuantities);
         }
 
         public override void FBProducts_Delete(int productID)

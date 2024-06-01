@@ -2,8 +2,7 @@
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
 <%@ Register TagPrefix="dnn" Assembly="DotNetNuke.Web" Namespace="DotNetNuke.Web.UI.WebControls" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
-<%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI" Assembly="Telerik.Web.UI" %>
-<%@ Register TagPrefix="telerik" Namespace="Telerik.Web.UI.Skins" Assembly="Telerik.Web.UI.Skins" %>
+
 
 <style type="text/css">
      .dnnFormItem.dnnFormHelp { margin-top: 2em; }
@@ -150,6 +149,12 @@
                  <asp:ListItem Text="6" Value="6" />
             </asp:DropDownList>
             <asp:RequiredFieldValidator ID="RequiredFieldValidatorddlLimit" runat="server" Display="Dynamic" ForeColor="Red" ValidationGroup="grAddProduct" ControlToValidate="ddlLimit" InitialValue="0" ErrorMessage="Required"></asp:RequiredFieldValidator>
+        </div>
+
+        <div class="dnnFormItem">
+           <dnn:Label runat="server" ID="lblLimitQuantities" ControlName="txtLimitQuantities" ResourceKey="lblLimitQuantities" Suffix=":" />
+            <asp:TextBox runat="server" ID="txtLimitQuantities" CssClass="dnnFormRequired" MaxLength="50" /> (load default)
+           
         </div>
 
 		<div class="dnnFormItem">

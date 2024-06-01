@@ -189,6 +189,7 @@
     <None Include="SqlScripts\01.00.10.SqlDataProvider" />
     <Content Include="SqlScripts\01.00.13.SqlDataProvider" />
     <Content Include="SqlScripts\01.00.15.SqlDataProvider" />
+    <Content Include="SqlScripts\01.00.16.SqlDataProvider" />
     <None Include="Uninstall.SqlDataProvider" />
     <Content Include="EditFBFoodInventory.ascx" />
     <Content Include="Invoices.ascx" />

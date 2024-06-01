@@ -58,11 +58,12 @@ namespace GIBS.FBFoodInventory.Components
         private double totalWeightPerCase;
         private string reportType;
         private int limit;
+        private string limitQuantities;
 
         // Reports
         private double totalProductWeight;
         private double totalProductCost;
-
+       
 
         /// <summary>
         /// empty cstor
@@ -307,6 +308,12 @@ namespace GIBS.FBFoodInventory.Components
         {
             get { return limit; }
             set { limit = value; }
+        }
+
+        public string LimitQuantities
+        {
+            get { return limitQuantities; }
+            set { limitQuantities = value; }
         }
 
         // Common

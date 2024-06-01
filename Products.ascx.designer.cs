@@ -213,6 +213,24 @@ namespace GIBS.Modules.FBFoodInventory
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidatorddlLimit;
 
         /// <summary>
+        /// lblLimitQuantities control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::DotNetNuke.UI.UserControls.LabelControl lblLimitQuantities;
+
+        /// <summary>
+        /// txtLimitQuantities control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLimitQuantities;
+
+        /// <summary>
         /// lblProductCategory control.
         /// </summary>
         /// <remarks>

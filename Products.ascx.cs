@@ -257,7 +257,7 @@ namespace GIBS.Modules.FBFoodInventory
                         {
                             ddlLimit.SelectedValue = item.Limit.ToString();
                         }
-                        
+                        txtLimitQuantities.Text = item.LimitQuantities.ToString();  
                      //   FillTranslationsGrid();
                     }
                     else
@@ -326,7 +326,7 @@ namespace GIBS.Modules.FBFoodInventory
                 item.LastModifiedByUserID = this.UserId;
                 item.IsActive = bool.Parse(rblIsActive.SelectedValue.ToString());
                 item.Limit = Int32.Parse(ddlLimit.SelectedValue.ToString());
-
+                item.LimitQuantities=txtLimitQuantities.Text.ToString();
                 if (txtProductID.Value.Length > 0)
                 {
                     item.ProductID = Int32.Parse(txtProductID.Value.ToString());
@@ -414,7 +414,7 @@ namespace GIBS.Modules.FBFoodInventory
         {
             try
             {
-                Response.Redirect(Globals.NavigateURL(), true);
+                Response.Redirect(PortalSettings.ActiveTab.Url, true);
             }
             catch (Exception ex)
             {

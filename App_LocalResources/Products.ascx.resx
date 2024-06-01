@@ -183,4 +183,10 @@
   <data name="lblTranslation.Text" xml:space="preserve">
     <value>Translation</value>
   </data>
+  <data name="lblLimitQuantities.Help" xml:space="preserve">
+    <value>1=2,2=3,3=3,4=4,5=4,6=4,7=5</value>
+  </data>
+  <data name="lblLimitQuantities.Text" xml:space="preserve">
+    <value>Custom Limit Quantities</value>
+  </data>
 </root>
