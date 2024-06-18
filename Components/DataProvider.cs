@@ -61,10 +61,10 @@ namespace GIBS.FBFoodInventory.Components
         
         
         //ProductCategories
-        public abstract void FBProductCategories_Insert(int createdByUserID, int moduleId, string productCategory, int portalId, bool isActive);
+        public abstract void FBProductCategories_Insert(int createdByUserID, int moduleId, string productCategory, int portalId, bool isActive, int sortOrder, string orderingInstructions);
         public abstract IDataReader FBProductCategory_List(int moduleId);
         public abstract IDataReader FBProductCategory_GetByID(int moduleId, int productCategoryID);
-        public abstract void FBProductCategory_Update(int productCategoryID, int moduleId, string productCategory, int lastModifiedByUserID, int portalId, bool isActive);
+        public abstract void FBProductCategory_Update(int productCategoryID, int moduleId, string productCategory, int lastModifiedByUserID, int portalId, bool isActive, int sortOrder, string orderingInstructions);
 
         public abstract IDataReader FBProductCategory_Translations(int productCategoryID);
 

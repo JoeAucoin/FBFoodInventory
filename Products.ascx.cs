@@ -414,7 +414,8 @@ namespace GIBS.Modules.FBFoodInventory
         {
             try
             {
-                Response.Redirect(PortalSettings.ActiveTab.Url, true);
+             //   Response.Redirect(PortalSettings.ActiveTab.Url, true);
+                Response.Redirect(Globals.NavigateURL(), true);
             }
             catch (Exception ex)
             {

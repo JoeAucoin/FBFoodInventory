@@ -30,6 +30,8 @@ namespace GIBS.FBFoodInventory.Components
         private string productCategory;
         private string languageCode;
         private int productCategoryID;
+        private int sortOrder;
+        private string orderingInstructions;
 
         //Products
         private int productID;
@@ -163,6 +165,18 @@ namespace GIBS.FBFoodInventory.Components
         {
             get { return productCategory; }
             set { productCategory = value; }
+        }
+
+        public int SortOrder
+        {
+            get { return sortOrder; }
+            set { sortOrder = value; }
+        }
+
+        public string OrderingInstructions
+        {
+            get { return orderingInstructions; }
+            set { orderingInstructions = value; }
         }
 
         public string LanguageCode

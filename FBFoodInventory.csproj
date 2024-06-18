@@ -76,9 +76,6 @@
       <HintPath>..\..\bin\Microsoft.ApplicationBlocks.Data.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -190,6 +187,7 @@
     <Content Include="SqlScripts\01.00.13.SqlDataProvider" />
     <Content Include="SqlScripts\01.00.15.SqlDataProvider" />
     <Content Include="SqlScripts\01.00.16.SqlDataProvider" />
+    <Content Include="SqlScripts\01.00.17.SqlDataProvider" />
     <None Include="Uninstall.SqlDataProvider" />
     <Content Include="EditFBFoodInventory.ascx" />
     <Content Include="Invoices.ascx" />

@@ -110,6 +110,8 @@ namespace GIBS.Modules.FBFoodInventory
                     txtProductCategory.Text = item.ProductCategory.ToString();
                     txtProductCategoryID.Value = item.ProductCategoryID.ToString();
                     rblIsActive.SelectedValue = item.IsActive.ToString();
+                    txtSortOrder.Text = item.SortOrder.ToString();
+                    txtOrderingInstructions.Text = item.OrderingInstructions.ToString();
 
                 //    FillTranslationsGrid();
                 }
@@ -175,7 +177,8 @@ true, false);
                 item.ProductCategory = txtProductCategory.Text.ToString();
                 item.LastModifiedByUserID = this.UserId;
                 item.IsActive = bool.Parse(rblIsActive.SelectedValue.ToString());
-
+                item.SortOrder = Int16.Parse("0" + txtSortOrder.Text.ToString());
+                item.OrderingInstructions = txtOrderingInstructions.Text.ToString();
                 if (txtProductCategoryID.Value.Length > 0)
                 {
                     item.ProductCategoryID = Int32.Parse(txtProductCategoryID.Value.ToString());
@@ -188,6 +191,13 @@ true, false);
                     controller.FBProductCategories_Insert(item);
                     
                 }
+
+                txtProductCategoryID.Value = "";
+                txtProductCategory.Text = "";
+                txtSortOrder.Text = "";
+                txtOrderingInstructions.Text = "";
+                rblIsActive.SelectedValue = "True";
+
                 FillProductCategoryGrid();
                 panelGrid.Visible = true;
                 panelEdit.Visible = false;
@@ -218,7 +228,10 @@ true, false);
         {
             try
             {
-                Response.Redirect(Globals.NavigateURL(), true);
+                // string pageUrl = navigationManager.NavigateURL(ti.TabID)
+              //  Response.Redirect(Globals.NavigateURL(PortalSettings.ActiveTab.TabID, "mygallery", "mid=" + ModuleId.ToString()));
+
+                  Response.Redirect(Globals.NavigateURL(), true);
             }
             catch (Exception ex)
             {
@@ -234,6 +247,8 @@ true, false);
             {
                 txtProductCategoryID.Value = "";
                 txtProductCategory.Text = "";
+                txtSortOrder.Text = "";
+                txtOrderingInstructions.Text = "";
                 rblIsActive.SelectedValue = "True";
                 panelGrid.Visible = false;
                 panelEdit.Visible = true;

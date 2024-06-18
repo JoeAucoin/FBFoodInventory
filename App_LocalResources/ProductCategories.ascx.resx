@@ -162,4 +162,10 @@
   <data name="lblTranslation.Text" xml:space="preserve">
     <value>Translation</value>
   </data>
+  <data name="lblOrderingInstructions.Text" xml:space="preserve">
+    <value>Ordering Instructions</value>
+  </data>
+  <data name="lblSortOrder.Text" xml:space="preserve">
+    <value>Sort Order</value>
+  </data>
 </root>

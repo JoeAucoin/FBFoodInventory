@@ -89,7 +89,7 @@ namespace GIBS.FBFoodInventory.Components
             //check we have some content to store
             if (info.ProductCategory != string.Empty)
             {
-                DataProvider.Instance().FBProductCategories_Insert(info.CreatedByUserID, info.ModuleId, info.ProductCategory, info.PortalId, info.IsActive);
+                DataProvider.Instance().FBProductCategories_Insert(info.CreatedByUserID, info.ModuleId, info.ProductCategory, info.PortalId, info.IsActive, info.SortOrder, info.OrderingInstructions);
             }
         }
 
@@ -114,7 +114,7 @@ namespace GIBS.FBFoodInventory.Components
             //check we have some content to update
             if (info.ProductCategory != string.Empty)
             {
-                DataProvider.Instance().FBProductCategory_Update(info.ProductCategoryID, info.ModuleId, info.ProductCategory, info.LastModifiedByUserID, info.PortalId, info.IsActive);
+                DataProvider.Instance().FBProductCategory_Update(info.ProductCategoryID, info.ModuleId, info.ProductCategory, info.LastModifiedByUserID, info.PortalId, info.IsActive, info.SortOrder, info.OrderingInstructions);
             }
         }
 

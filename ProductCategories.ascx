@@ -31,9 +31,7 @@
     <PagerStyle HorizontalAlign="Left"  BackColor="DodgerBlue" Height="20px" Font-Size="Small" ForeColor="Snow" />  
 <PagerSettings Mode="NumericFirstLast" Position="Bottom" /> 
     
-    
-    <Columns>
-        
+    <Columns>  
         
         <asp:TemplateField HeaderText="" ItemStyle-VerticalAlign="Top" ItemStyle-Width="28px" ItemStyle-HorizontalAlign="Center">
          <ItemTemplate>
@@ -43,18 +41,12 @@
          </ItemTemplate>
        </asp:TemplateField>
 
-
-
-
-
         <asp:BoundField HeaderText="Category" DataField="ProductCategory" ItemStyle-Font-Bold="True"></asp:BoundField>
-         <asp:BoundField HeaderText="Active" DataField="IsActive" Visible="True"></asp:BoundField>
-        
+         <asp:BoundField HeaderText="Ordering Instructions" DataField="OrderingInstructions" Visible="True"></asp:BoundField>
+        <asp:BoundField HeaderText="Sort Order" DataField="SortOrder" Visible="True" ItemStyle-HorizontalAlign="Center"></asp:BoundField>
+        <asp:BoundField HeaderText="Active" DataField="IsActive" Visible="True"></asp:BoundField>
         <asp:BoundField HeaderText="Last Modified" DataField="LastModifiedOnDate" dataformatstring="{0:g}" HtmlEncode="False" ></asp:BoundField>
          <asp:BoundField HeaderText="By" DataField="LastModifiedByUserName"></asp:BoundField>
-        
-        
-
     </Columns>
 </asp:GridView>	
 
@@ -92,6 +84,16 @@
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtProductCategory" 
                 CssClass="dnnFormMessage dnnFormError" ResourceKey="ProductCategory.Required" />
         </div>
+
+        <div class="dnnFormItem">
+           <dnn:Label runat="server" ID="lblOrderingInstructions" ControlName="txtOrderingInstructions" ResourceKey="lblOrderingInstructions" Suffix=":" />
+            <asp:TextBox runat="server" ID="txtOrderingInstructions" CssClass="dnnFormRequired" />
+        </div>
+
+        <div class="dnnFormItem">
+           <dnn:Label runat="server" ID="lblSortOrder" ControlName="txtSortOrder" ResourceKey="lblSortOrder" Suffix=":" />
+            <asp:TextBox runat="server" ID="txtSortOrder" CssClass="dnnFormRequired" Width="200px" />          
+        </div>	
 
         <div class="dnnFormItem">
           <dnn:Label runat="server" ID="lblIsActive" ControlName="rblIsActive" ResourceKey="lblIsActive" Suffix=":" />

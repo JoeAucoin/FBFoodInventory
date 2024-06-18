@@ -1,0 +1,191 @@
+﻿IF COL_LENGTH('GIBS_FBProductCategory','SortOrder') IS NULL
+ BEGIN
+  /*  COLUMN DOES NOT EXIST  */
+ Alter TABLE [dbo].[GIBS_FBProductCategory]
+ADD SortOrder int
+ END
+GO
+
+
+IF COL_LENGTH('GIBS_FBProductCategory','OrderingInstructions') IS NULL
+ BEGIN
+  /*  COLUMN DOES NOT EXIST  */
+ Alter TABLE [dbo].[GIBS_FBProductCategory]
+ADD OrderingInstructions nvarchar(max)
+ END
+GO
+
+
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategory_Update]    Script Date: 6/3/2024 2:00:07 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductCategory_Update]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProductCategory_Update]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategory_List]    Script Date: 6/3/2024 2:00:07 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductCategory_List]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProductCategory_List]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategory_GetByID]    Script Date: 6/3/2024 2:00:07 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductCategory_GetByID]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProductCategory_GetByID]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategories_Insert]    Script Date: 6/3/2024 2:00:07 PM ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[GIBS_FBProductCategories_Insert]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[GIBS_FBProductCategories_Insert]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategories_Insert]    Script Date: 6/3/2024 2:00:07 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[GIBS_FBProductCategories_Insert] 
+	@CreatedByUserID INT, 
+	@ModuleId INT, 
+	@ProductCategory NVARCHAR(50), 	
+	@PortalID INT,
+	@IsActive bit,
+	@SortOrder int,
+	@OrderingInstructions NVARCHAR(max)
+	 
+AS 
+BEGIN 
+	SET NOCOUNT ON;
+	
+
+insert into dbo.GIBS_FBProductCategory (
+	ProductCategory,
+	ModuleID,
+	CreatedOnDate,
+	CreatedByUserID,
+	lastModifiedByUserID,
+	LastModifiedOnDate,
+	PortalID,
+	isActive,
+	SortOrder,
+	OrderingInstructions
+
+) 
+values (
+	@ProductCategory,
+	@ModuleId,
+	GETDATE(),
+	@CreatedByUserID,
+	@CreatedByUserID,
+	GETDATE(),
+	@PortalID,
+	@IsActive,
+	@SortOrder,
+	@OrderingInstructions
+)
+	
+END
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategory_GetByID]    Script Date: 6/3/2024 2:00:07 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure [dbo].[GIBS_FBProductCategory_GetByID]
+
+	@ModuleId int,
+	@ProductCategoryID int
+
+as
+
+SELECT     ProductCategoryID, ProductCategory,
+ ModuleID, 
+GIBS_FBProductCategory.CreatedOnDate, GIBS_FBProductCategory.CreatedByUserID, 
+GIBS_FBProductCategory.LastModifiedByUserID, GIBS_FBProductCategory.LastModifiedOnDate, PortalID,
+'CreatedByUserName' = Users.FirstName + ' ' + Users.LastName
+,isActive,
+SortOrder,
+	OrderingInstructions
+from GIBS_FBProductCategory
+left outer join Users on GIBS_FBProductCategory.CreatedByUserID = Users.UserId
+where  ModuleId = @ModuleId and ProductCategoryID = @ProductCategoryID
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategory_List]    Script Date: 6/3/2024 2:00:07 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE procedure [dbo].[GIBS_FBProductCategory_List]
+
+	@ModuleId int
+
+as
+
+SELECT     
+ProductCategoryID, ProductCategory, ModuleID, GIBS_FBProductCategory.CreatedOnDate, 
+GIBS_FBProductCategory.CreatedByUserID, GIBS_FBProductCategory.LastModifiedByUserID, 
+GIBS_FBProductCategory.LastModifiedOnDate, 
+PortalID, 
+'CreatedByUserName' = Users.FirstName + ' ' + Users.LastName,
+LastMod.FirstName + ' ' + LastMod.LastName AS 'LastModifiedByUserName'
+,isActive
+,coalesce(SortOrder, 0) AS SortOrder
+	,OrderingInstructions
+from dbo.GIBS_FBProductCategory
+left outer join Users on GIBS_FBProductCategory.CreatedByUserID = Users.UserId 
+
+              LEFT OUTER JOIN
+             Users AS LastMod ON GIBS_FBProductCategory.LastModifiedByUserID = LastMod.UserID
+             
+where  ModuleId = @ModuleId 
+order by SortOrder, ProductCategory
+
+GO
+
+/****** Object:  StoredProcedure [dbo].[GIBS_FBProductCategory_Update]    Script Date: 6/3/2024 2:00:07 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[GIBS_FBProductCategory_Update] 
+	@ProductCategoryID INT, 
+	@ModuleId INT, 
+	@ProductCategory NVARCHAR(50), 
+	@LastModifiedByUserID INT,
+	@PortalID INT,
+	@IsActive bit,
+		@SortOrder int,
+	@OrderingInstructions NVARCHAR(max)
+	 
+AS 
+BEGIN 
+	SET NOCOUNT ON;
+	
+	UPDATE dbo.GIBS_FBProductCategory
+		SET 
+		ProductCategory = @ProductCategory,
+		LastModifiedByUserID = @LastModifiedByUserID,
+		LastModifiedOnDate = GETDATE(),
+		PortalID = @PortalID,
+		IsActive = @IsActive,
+		SortOrder = @SortOrder,
+		OrderingInstructions = @OrderingInstructions
+		WHERE  ModuleId = @ModuleId
+		and ProductCategoryID = @ProductCategoryID;
+	
+END
+GO
+
+

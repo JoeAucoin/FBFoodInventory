@@ -1,6 +1,6 @@
 ﻿<dotnetnuke type="Package" version="5.0">
   <packages>
-    <package name="GIBS.FBFoodInventory" type="Module" version="1.0.16">
+    <package name="GIBS.FBFoodInventory" type="Module" version="1.0.17">
       <friendlyName>GIBS Food Bank Food Tracking</friendlyName>
       <description>GIBS Food Bank Food Inventory Tracking</description>
       <iconFile />
@@ -132,9 +132,14 @@
               <name>01.00.16.SqlDataProvider</name>
               <version>01.00.16</version>
             </script>
+            <script type="Install">
+              <path>SqlScripts</path>
+              <name>01.00.17.SqlDataProvider</name>
+              <version>01.00.17</version>
+            </script>            
             <script type="UnInstall">
               <name>Uninstall.SqlDataProvider</name>
-              <version>1.0.16</version>
+              <version>1.0.17</version>
             </script>
           </scripts>
         </component>

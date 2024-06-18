@@ -143,9 +143,9 @@ namespace GIBS.FBFoodInventory.Components
             SqlHelper.ExecuteNonQuery(connectionString, GetFullyQualifiedName("FBProductsTranslate_InsertUpdate"), productID, productName, languageCode);
         }
 
-        public override void FBProductCategories_Insert(int createdByUserID, int moduleId, string productCategory, int portalId, bool isActive)
+        public override void FBProductCategories_Insert(int createdByUserID, int moduleId, string productCategory, int portalId, bool isActive, int sortOrder, string orderingInstructions)
         {
-            SqlHelper.ExecuteNonQuery(connectionString, GetFullyQualifiedName("FBProductCategories_Insert"), createdByUserID, moduleId, productCategory, portalId, isActive);
+            SqlHelper.ExecuteNonQuery(connectionString, GetFullyQualifiedName("FBProductCategories_Insert"), createdByUserID, moduleId, productCategory, portalId, isActive, sortOrder, orderingInstructions);
         }
 
         public override IDataReader FBProductCategory_GetByID(int moduleId, int itemId)
@@ -153,9 +153,9 @@ namespace GIBS.FBFoodInventory.Components
             return (IDataReader)SqlHelper.ExecuteReader(connectionString, GetFullyQualifiedName("FBProductCategory_GetByID"), moduleId, itemId);
         }
 
-        public override void FBProductCategory_Update(int productCategoryID, int moduleId, string productCategory, int lastModifiedByUserID, int portalId, bool isActive)
+        public override void FBProductCategory_Update(int productCategoryID, int moduleId, string productCategory, int lastModifiedByUserID, int portalId, bool isActive, int sortOrder, string orderingInstructions)
         {
-            SqlHelper.ExecuteNonQuery(connectionString, GetFullyQualifiedName("FBProductCategory_Update"), productCategoryID, moduleId, productCategory, lastModifiedByUserID, portalId, isActive);
+            SqlHelper.ExecuteNonQuery(connectionString, GetFullyQualifiedName("FBProductCategory_Update"), productCategoryID, moduleId, productCategory, lastModifiedByUserID, portalId, isActive, sortOrder, orderingInstructions);
         }
 
         //Products
