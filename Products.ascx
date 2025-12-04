@@ -3,6 +3,7 @@
 <%@ Register TagPrefix="dnn" Assembly="DotNetNuke.Web" Namespace="DotNetNuke.Web.UI.WebControls" %>
 <%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
 
+ <dnn:DnnCssInclude ID="DnnCssInclude1" runat="server" FilePath="~/DesktopModules/GIBS/FBClients/Style.css?1=3" />
 
 <style type="text/css">
      .dnnFormItem.dnnFormHelp { margin-top: 2em; }
@@ -29,7 +30,7 @@
 <div><asp:Label ID="lblDebug" runat="server" CssClass="lead" /></div>
 <asp:GridView ID="gvProducts" runat="server" 
      AllowPaging="True"
-    PageSize="25"
+    PageSize="5"
      
     AllowSorting="True"
     PagerSettings-Position="Bottom" 
@@ -39,17 +40,15 @@
 	OnRowDeleting="gvProducts_RowDeleting"
     DataKeyNames="ProductID"       
     AutoGenerateColumns="False" 
-     GridLines="Horizontal"
-    CellPadding="4" CellSpacing="1" BorderWidth="1px" 
+     CssClass="table table-striped table-bordered table-list" 
      
     resourcekey="gvProducts">
     
-    <AlternatingRowStyle cssclass="dnnGridAltItem" />
-    <FooterStyle cssclass="dnnGridFooter" />
-    <HeaderStyle cssclass="dnnGridHeader" />
-    <PagerStyle cssclass="dnnGridPager" />
-    <RowStyle cssclass="dnnGridItem" />
-    <PagerStyle HorizontalAlign="Left"  BackColor="DodgerBlue" Height="20px" Font-Size="Small" ForeColor="Snow" />  
+    
+   
+    <PagerStyle cssclass="pagination-ys" />
+   
+    
 <PagerSettings Mode="NumericFirstLast" /> 
     <Columns>
 
@@ -57,7 +56,7 @@
          <ItemTemplate>
            <asp:LinkButton ID="LinkButtonEdit" CausesValidation="False"     
              CommandArgument='<%# Eval("ProductID") %>' 
-             CommandName="Edit" runat="server"><asp:image ID="imgEdit" runat="server" imageurl="~/images/edit.gif" AlternateText="Edit Record" /></asp:LinkButton>
+             CommandName="Edit" runat="server"><asp:image ID="imgEdit" runat="server" imageurl="~/Icons/Sigma/Edit_32X32_Standard.png" AlternateText="Edit Record" /></asp:LinkButton>
          </ItemTemplate>
        </asp:TemplateField>
 
@@ -66,7 +65,7 @@
          <ItemTemplate>
            <asp:LinkButton ID="LinkButtonDelete" CausesValidation="False" OnClientClick="return confirm('Are you sure you want to inactivate this product?');"      
              CommandArgument='<%# Eval("ProductID") %>' 
-             CommandName="Delete" runat="server"><asp:image ID="imgDelete" runat="server" imageurl="~/images/delete.gif" AlternateText="Delete Record" /></asp:LinkButton>
+             CommandName="Delete" runat="server"><asp:image ID="imgDelete" runat="server" imageurl="~/Icons/Sigma/Delete_32X32_Standard.png" AlternateText="Delete Record" /></asp:LinkButton>
          </ItemTemplate>
        </asp:TemplateField>
 

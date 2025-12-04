@@ -34,7 +34,7 @@ OnRowEditing="gvInvoices_RowEditing"
 OnRowDeleting="gvInvoices_RowDeleting" 
 OnPageIndexChanging="gvInvoices_PageIndexChanging"     
     AutoGenerateColumns="False" 
-    GridLines="Horizontal" resourcekey="gvProducts" AllowPaging="True" PageSize="2" CssClass="table table-striped table-bordered table-list">
+    GridLines="Horizontal" resourcekey="gvProducts" AllowPaging="True" PageSize="25" CssClass="table table-striped table-bordered table-list">
     
 <PagerStyle  CssClass="pagination-ys" />  
 <PagerSettings Mode="NumericFirstLast" /> 

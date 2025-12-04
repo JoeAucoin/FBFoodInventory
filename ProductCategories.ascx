@@ -1,6 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ProductCategories.ascx.cs" Inherits="GIBS.Modules.FBFoodInventory.ProductCategories" %>
 <%@ Register TagPrefix="dnn" TagName="Label" Src="~/controls/LabelControl.ascx" %>
 
+<%@ Register TagPrefix="dnn" Namespace="DotNetNuke.Web.Client.ClientResourceManagement" Assembly="DotNetNuke.Web.Client" %>
+
+ <dnn:DnnCssInclude ID="DnnCssInclude1" runat="server" FilePath="~/DesktopModules/GIBS/FBClients/Style.css?1=3" />
+
 <div class="dnnForm" id="form-supplier">  
 
 
@@ -19,17 +23,13 @@
     
     OnPageIndexChanging="gvProducts_PageIndexChanging" 
     AutoGenerateColumns="False" 
-    GridLines="Horizontal" 
-     CssClass="dnnGrid"
+    CssClass="table table-striped table-bordered table-list" 
     resourcekey="gvProductCategory">
 
-    <AlternatingRowStyle cssclass="dnnGridAltItem" />
-    <FooterStyle cssclass="dnnGridFooter" />
-    <HeaderStyle cssclass="dnnGridHeader" />
-    <PagerStyle cssclass="dnnGridPager" />
-    <RowStyle cssclass="dnnGridItem" />
-    <PagerStyle HorizontalAlign="Left"  BackColor="DodgerBlue" Height="20px" Font-Size="Small" ForeColor="Snow" />  
-<PagerSettings Mode="NumericFirstLast" Position="Bottom" /> 
+    <PagerStyle cssclass="pagination-ys" />
+   
+    
+<PagerSettings Mode="NumericFirstLast" />
     
     <Columns>  
         
@@ -37,7 +37,7 @@
          <ItemTemplate>
            <asp:LinkButton ID="LinkButtonEdit" CausesValidation="False"     
              CommandArgument='<%# Eval("ProductCategoryID") %>' 
-             CommandName="Edit" runat="server"><asp:image ID="imgEdit" runat="server" imageurl="~/images/edit.gif" AlternateText="Edit Record" /></asp:LinkButton>
+             CommandName="Edit" runat="server"><asp:image ID="imgEdit" runat="server" imageurl="~/Icons/Sigma/Edit_32X32_Standard.png" AlternateText="Edit Record" /></asp:LinkButton>
          </ItemTemplate>
        </asp:TemplateField>
 

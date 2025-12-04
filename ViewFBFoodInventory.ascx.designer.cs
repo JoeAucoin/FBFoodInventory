@@ -15,13 +15,13 @@ namespace GIBS.Modules.FBFoodInventory
     {
 
         /// <summary>
-        /// btnInvoices control.
+        /// btnProductCategories control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnInvoices;
+        protected global::System.Web.UI.WebControls.Button btnProductCategories;
 
         /// <summary>
         /// btnProducts control.
@@ -42,13 +42,13 @@ namespace GIBS.Modules.FBFoodInventory
         protected global::System.Web.UI.WebControls.Button btnSuppliers;
 
         /// <summary>
-        /// btnProductCategories control.
+        /// btnInvoices control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnProductCategories;
+        protected global::System.Web.UI.WebControls.Button btnInvoices;
 
         /// <summary>
         /// btnFoodReport control.

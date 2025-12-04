@@ -130,7 +130,7 @@
     <value>Suppliers</value>
   </data>
   <data name="btnProductCategories.Text" xml:space="preserve">
-    <value>Product Categories</value>
+    <value>Categories</value>
   </data>
   <data name="btnInvoices.Text" xml:space="preserve">
     <value>Invoices</value>
